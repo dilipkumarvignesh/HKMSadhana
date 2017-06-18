@@ -18,7 +18,7 @@ import iskconbangalore.org.hkmsadhana.dummy.DummyContent.DummyItem;
  */
 public class MySadhanaHistoryRecyclerViewAdapter extends RecyclerView.Adapter<MySadhanaHistoryRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final List<DummyItem> mValues         ;
     private final OnListFragmentInteractionListener mListener     ;
 
     public MySadhanaHistoryRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
