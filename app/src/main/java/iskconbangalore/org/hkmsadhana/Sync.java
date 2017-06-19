@@ -12,12 +12,12 @@ import android.view.ViewGroup;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Remainder.OnFragmentInteractionListener} interface
+ * {@link Sync.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link Remainder#newInstance} factory method to
+ * Use the {@link Sync#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Remainder extends Fragment {
+public class Sync extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -27,9 +27,9 @@ public class Remainder extends Fragment {
     private String mParam1;
     private String mParam2;
 
-   // private OnFragmentInteractionListener mListener;
+ //   private OnFragmentInteractionListener mListener;
 
-    public Remainder() {
+    public Sync() {
         // Required empty public constructor
     }
 
@@ -39,11 +39,11 @@ public class Remainder extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment Remainder.
+     * @return A new instance of fragment Sync.
      */
     // TODO: Rename and change types and number of parameters
-    public static Remainder newInstance(String param1, String param2) {
-        Remainder fragment = new Remainder();
+    public static Sync newInstance(String param1, String param2) {
+        Sync fragment = new Sync();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -64,7 +64,7 @@ public class Remainder extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_remainder, container, false);
+        return inflater.inflate(R.layout.fragment_sync, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -88,7 +88,7 @@ public class Remainder extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
-        //mListener = null;
+      //  mListener = null;
     }
 
     /**
@@ -96,7 +96,7 @@ public class Remainder extends Fragment {
      * fragment to allow an interaction in this fragment to be communicated
      * to the activity and potentially other fragments contained in that
      * activity.
-     * <p>
+     * <p/>
      * See the Android Training lesson <a href=
      * "http://developer.android.com/training/basics/fragments/communicating.html"
      * >Communicating with Other Fragments</a> for more information.
