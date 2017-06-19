@@ -45,6 +45,16 @@ public class MainActivity extends AppCompatActivity
               insertTodaySadhana();
             }
         });
+
+        Button Sync = (Button) findViewById(R.id.Sync);
+        Sync.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                syncData();
+            }
+        });
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -141,5 +151,10 @@ public class MainActivity extends AppCompatActivity
         Gday = day;
 
 
+    }
+    public void syncData()
+    {
+        Intent intent = new Intent(MainActivity.this, SyncData.class);
+        startActivity(intent);
     }
 }
