@@ -60,6 +60,10 @@ public class SyncData extends Activity
     private static final String PREF_ACCOUNT_NAME = "accountName";
     private static final String[] SCOPES = { SheetsScopes.SPREADSHEETS };
 
+//    public void updateData(int option){
+//
+//
+//    }
     /**
      * Create the main activity.
      * @param savedInstanceState previously saved instance data.
@@ -121,7 +125,7 @@ public class SyncData extends Activity
      * of the preconditions are not satisfied, the app will prompt the user as
      * appropriate.
      */
-    private void getResultsFromApi() {
+    public void getResultsFromApi() {
         if (! isGooglePlayServicesAvailable()) {
             acquireGooglePlayServices();
         } else if (mCredential.getSelectedAccountName() == null) {

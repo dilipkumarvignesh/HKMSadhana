@@ -21,13 +21,17 @@ import android.widget.Toast;
 //import android.app.DialogFragment;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener{
+        implements NavigationView.OnNavigationItemSelectedListener,Sync.OnFragmentInteractionListener{
     TextView selectedDate;
     private DBHelper mydb ;
     int Gyear, Gmonth, Gday;
 
 
-
+    @Override
+    public void onFragmentInteraction(){
+        SyncData sync_now = new SyncData();
+        sync_now.getResultsFromApi();
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -173,6 +177,7 @@ public class MainActivity extends AppCompatActivity
     {
         Intent intent = new Intent(MainActivity.this, SyncData.class);
         startActivity(intent);
+
     }
 
 }
