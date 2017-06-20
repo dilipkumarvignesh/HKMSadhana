@@ -1,6 +1,8 @@
 package iskconbangalore.org.hkmsadhana;
 
 import android.app.AlarmManager;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
@@ -36,8 +38,19 @@ public class RemainderService extends Service {
                 // service. Lastly you can optionally pass flags.
                 PendingIntent.getService(this, 0, new Intent(this, RemainderService.class), 0)
         );
-        stopSelf();
 
+        Notification n  = new Notification.Builder(this)
+                .setContentTitle("Update Today Sadhana")
+                .setContentText("MA update Pending")
+                .setSmallIcon(R.drawable.ic_menu_camera)
+                .setAutoCancel(true).build();
+
+
+        NotificationManager notificationManager =
+                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        notificationManager.notify(0, n);
+        stopSelf();
         return START_NOT_STICKY;
     }
 
