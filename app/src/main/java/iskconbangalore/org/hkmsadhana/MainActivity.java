@@ -29,9 +29,11 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public void onFragmentInteraction(){
-        SyncData sync_now = new SyncData();
-        sync_now.getResultsFromApi();
+//        SyncData sync_now = new SyncData();
+//        sync_now.getResultsFromApi();
+        syncData();
     }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
