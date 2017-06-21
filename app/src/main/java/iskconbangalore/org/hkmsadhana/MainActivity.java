@@ -12,6 +12,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity
 
         startService(new Intent(this, RemainderService.class));
         mydb = new DBHelper(this);
+
+
+        insertTodaySadhana();
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -89,7 +94,9 @@ public class MainActivity extends AppCompatActivity
     {
         Toast.makeText(getApplicationContext(), " Sadhana Updated Successfully.",
                 Toast.LENGTH_LONG).show();
-        mydb.insertSadhana("17.06.2017","YES","YES","YES");
+        long date = System.currentTimeMillis() / 1000L;
+        Log.d("info","date="+date);
+        mydb.insertSadhana(date,this,"YES","YES","YES");
 
     }
     @Override

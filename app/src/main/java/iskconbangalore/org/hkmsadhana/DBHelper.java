@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -34,7 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table SadhanaUpdate " +
-                        "(id integer primary key, date text, MA text, DA text, SB text)"
+                        "(id integer primary key, date integer, MA text, DA text, SB text)"
         );
     }
 
@@ -45,15 +46,22 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertSadhana (String date, String MA, String DA, String SA) {
+    public boolean insertSadhana (long date,Context context, String MA, String DA, String SB) {
+
+
         SQLiteDatabase db = this.getWritableDatabase();
+
         ContentValues contentValues = new ContentValues();
         contentValues.put("date", date);
         contentValues.put("MA", MA);
         contentValues.put("DA", DA);
-        contentValues.put("SA", SA);
+        contentValues.put("SB", SB);
 
-        db.insert("SadhanaUpdate", null, contentValues);
+        long rowInserted = db.insert("SadhanaUpdate", null, contentValues);
+        if(rowInserted != -1)
+            Toast.makeText(context, "New row added, row id: " + rowInserted, Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(context, "Something wrong", Toast.LENGTH_SHORT).show();
         return true;
     }
 

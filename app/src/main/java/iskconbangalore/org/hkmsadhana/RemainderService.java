@@ -20,8 +20,8 @@ public class RemainderService extends Service {
         // I don't want this service to stay in memory, so I stop it
         // immediately after doing what I wanted it to do.
 
-        Toast.makeText(getApplicationContext(), " Remainder Service Running.",
-                            Toast.LENGTH_LONG).show();
+//        Toast.makeText(getApplicationContext(), " Remainder Service Running.",
+//                            Toast.LENGTH_LONG).show();
 
      AlarmManager alarm = (AlarmManager)getSystemService(ALARM_SERVICE);
         alarm.set(
@@ -43,6 +43,7 @@ public class RemainderService extends Service {
                 .setContentTitle("Update Today Sadhana")
                 .setContentText("MA update Pending")
                 .setSmallIcon(R.drawable.ic_menu_camera)
+
                 .setAutoCancel(true).build();
 
 
@@ -50,8 +51,8 @@ public class RemainderService extends Service {
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         notificationManager.notify(0, n);
-        stopSelf();
-        return START_NOT_STICKY;
+        //stopSelf();
+        return START_STICKY;
     }
 
     @Override
