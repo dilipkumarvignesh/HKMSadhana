@@ -7,7 +7,6 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
-import android.widget.Toast;
 
 public class RemainderService extends Service {
     public RemainderService() {
@@ -39,11 +38,12 @@ public class RemainderService extends Service {
                 PendingIntent.getService(this, 0, new Intent(this, RemainderService.class), 0)
         );
 
+       // PendingIntent startActivty
         Notification n  = new Notification.Builder(this)
                 .setContentTitle("Update Today Sadhana")
                 .setContentText("MA update Pending")
                 .setSmallIcon(R.drawable.ic_menu_camera)
-
+                .setContentIntent(PendingIntent.getActivity(this, 0, new Intent(this, MainActivity.class), 0))
                 .setAutoCancel(true).build();
 
 
@@ -51,7 +51,7 @@ public class RemainderService extends Service {
                 (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 
         notificationManager.notify(0, n);
-        //stopSelf();
+        stopSelf();
         return START_STICKY;
     }
 

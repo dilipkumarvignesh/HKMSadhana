@@ -8,7 +8,7 @@ import android.widget.TextView;
 
 import java.util.List;
 
-import iskconbangalore.org.hkmsadhana.SadhanaHistoryFragment.OnListFragmentInteractionListener;
+import iskconbangalore.org.hkmsadhana.HistoryFragment.OnListFragmentInteractionListener;
 import iskconbangalore.org.hkmsadhana.dummy.DummyContent.DummyItem;
 
 /**
@@ -16,12 +16,12 @@ import iskconbangalore.org.hkmsadhana.dummy.DummyContent.DummyItem;
  * specified {@link OnListFragmentInteractionListener}.
  * TODO: Replace the implementation with code for your data type.
  */
-public class MySadhanaHistoryRecyclerViewAdapter extends RecyclerView.Adapter<MySadhanaHistoryRecyclerViewAdapter.ViewHolder> {
+public class MyHistoryRecyclerViewAdapter extends RecyclerView.Adapter<MyHistoryRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues         ;
-    private final OnListFragmentInteractionListener mListener     ;
+    private final List<DummyItem> mValues;
+    private final OnListFragmentInteractionListener mListener;
 
-    public MySadhanaHistoryRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyHistoryRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -29,7 +29,7 @@ public class MySadhanaHistoryRecyclerViewAdapter extends RecyclerView.Adapter<My
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_sadhanahistory, parent, false);
+                .inflate(R.layout.fragment_history, parent, false);
         return new ViewHolder(view);
     }
 
@@ -45,7 +45,7 @@ public class MySadhanaHistoryRecyclerViewAdapter extends RecyclerView.Adapter<My
                 if (null != mListener) {
                     // Notify the active callbacks interface (the activity, if the
                     // fragment is attached to one) that an item has been selected.
-                    mListener.onListFragmentInteraction(holder.mItem);
+                    mListener.onListFragmentInteraction();
                 }
             }
         });

@@ -43,6 +43,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,Sync.OnFragmentInteractionListener,
+        HistoryFragment.OnListFragmentInteractionListener,
         EasyPermissions.PermissionCallbacks{
     TextView selectedDate;
     private DBHelper mydb ;
@@ -72,6 +73,12 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
+    public void onListFragmentInteraction()
+    {
+        Toast.makeText(getApplicationContext(), "History Fragment",
+                Toast.LENGTH_LONG).show();
+    }
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -84,7 +91,7 @@ public class MainActivity extends AppCompatActivity
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
         Log.d("info","GCredentialsMain="+mCredential);
-        insertTodaySadhana();
+      //  insertTodaySadhana();
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -186,6 +193,7 @@ public class MainActivity extends AppCompatActivity
             fragment = new Remainder();
 
         } else if (id == R.id.nav_slideshow) {
+            fragment = new HistoryFragment();
 
         } else if (id == R.id.nav_manage) {
             fragment = new Sync();

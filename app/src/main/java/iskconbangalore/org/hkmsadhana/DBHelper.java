@@ -35,7 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table SadhanaUpdate " +
-                        "(id integer primary key, date integer, MA text, DA text, SB text)"
+                        "(id integer, StrDate text , date integer, MA text, DA text, SB text, primary key(id,StrDate));"
         );
     }
 
@@ -101,13 +101,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from SadhanaUpdate", null );
+        Cursor res =  db.rawQuery( "select date,SB from SadhanaUpdate", null );
         res.moveToFirst();
 
         while(res.isAfterLast() == false){
             array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_DATE)));
             res.moveToNext();
         }
+
         return array_list;
     }
 }
