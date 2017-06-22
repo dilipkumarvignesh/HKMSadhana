@@ -1,6 +1,7 @@
 package iskconbangalore.org.hkmsadhana;
 
 import android.os.AsyncTask;
+import android.util.Log;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
@@ -28,7 +29,7 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
 
     private static final String BUTTON_TEXT = "Sync Data";
     private static final String PREF_ACCOUNT_NAME = "accountName";
-    private static final String[] SCOPES = { SheetsScopes.SPREADSHEETS };s
+    private static final String[] SCOPES = { SheetsScopes.SPREADSHEETS };
     private com.google.api.services.sheets.v4.Sheets mService = null;
     private Exception mLastError = null;
 
@@ -48,6 +49,7 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
     @Override
     protected List<String> doInBackground(Void... params) {
         try {
+            Log.d("info","Inside Background");
             return getDataFromApi();
         } catch (Exception e) {
             mLastError = e;
@@ -67,6 +69,7 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
         String spreadsheetId = "1xk8AY8MOWiqwC3qvFEyOVN-wBdMtDW8QtirmcUkocrU";
         // String range = "Class Data!A2:E";
         String range = "A9:E9";
+        Log.d("info","Insie getDataFromAPi");
         List<String> results = new ArrayList<String>();
 //            ValueRange response = this.mService.spreadsheets().values()
 //                    .get(spreadsheetId, range)
