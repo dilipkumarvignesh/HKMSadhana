@@ -19,6 +19,12 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
+import com.google.api.client.util.ExponentialBackOff;
+import com.google.api.services.sheets.v4.SheetsScopes;
+
+import java.util.Arrays;
+
 //import android.app.DialogFragment;
 
 public class MainActivity extends AppCompatActivity
@@ -26,6 +32,18 @@ public class MainActivity extends AppCompatActivity
     TextView selectedDate;
     private DBHelper mydb ;
     int Gyear, Gmonth, Gday;
+
+
+    GoogleAccountCredential mCredential;
+
+    static final int REQUEST_ACCOUNT_PICKER = 1000;
+    static final int REQUEST_AUTHORIZATION = 1001;
+    static final int REQUEST_GOOGLE_PLAY_SERVICES = 1002;
+    static final int REQUEST_PERMISSION_GET_ACCOUNTS = 1003;
+
+    private static final String BUTTON_TEXT = "Sync Data";
+    private static final String PREF_ACCOUNT_NAME = "accountName";
+    private static final String[] SCOPES = { SheetsScopes.SPREADSHEETS };
 
 
     @Override
@@ -42,8 +60,10 @@ public class MainActivity extends AppCompatActivity
 
         startService(new Intent(this, RemainderService.class));
         mydb = new DBHelper(this);
-
-
+        mCredential = GoogleAccountCredential.usingOAuth2(
+                getApplicationContext(), Arrays.asList(SCOPES))
+                .setBackOff(new ExponentialBackOff());
+        Log.d("info","GCredentials="+mCredential);
         insertTodaySadhana();
 
 

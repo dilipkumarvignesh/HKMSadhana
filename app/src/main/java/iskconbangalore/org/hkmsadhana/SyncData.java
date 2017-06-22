@@ -10,10 +10,8 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
 import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,20 +21,10 @@ import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
-import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccountCredential;
-import com.google.api.client.googleapis.extensions.android.gms.auth.GooglePlayServicesAvailabilityIOException;
-import com.google.api.client.googleapis.extensions.android.gms.auth.UserRecoverableAuthIOException;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
 import com.google.api.client.util.ExponentialBackOff;
 import com.google.api.services.sheets.v4.SheetsScopes;
-import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
-import com.google.api.services.sheets.v4.model.ValueRange;
 
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,7 +34,8 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class SyncData extends Activity
         implements EasyPermissions.PermissionCallbacks {
-    GoogleAccountCredential mCredential;
+
+    public GoogleAccountCredential mCredential;
     private TextView mOutputText;
     private Button mCallApiButton;
     ProgressDialog mProgress;
@@ -106,7 +95,7 @@ public class SyncData extends Activity
         activityLayout.addView(mOutputText);
 
         mProgress = new ProgressDialog(this);
-        mProgress.setMessage("Calling Google Sheets API ...");
+        mProgress.setMessage("Saving Data ...");
 
         setContentView(activityLayout);
 
@@ -320,126 +309,5 @@ public class SyncData extends Activity
      * An asynchronous task that handles the Google Sheets API call.
      * Placing the API calls in their own task ensures the UI stays responsive.
      */
-    private class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
-        private com.google.api.services.sheets.v4.Sheets mService = null;
-        private Exception mLastError = null;
 
-        MakeRequestTask(GoogleAccountCredential credential) {
-            HttpTransport transport = AndroidHttp.newCompatibleTransport();
-            JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
-            mService = new com.google.api.services.sheets.v4.Sheets.Builder(
-                    transport, jsonFactory, credential)
-                    .setApplicationName("Google Sheets API Android Quickstart")
-                    .build();
-        }
-
-        /**
-         * Background task to call Google Sheets API.
-         * @param params no parameters needed for this task.
-         */
-        @Override
-        protected List<String> doInBackground(Void... params) {
-            try {
-                return getDataFromApi();
-            } catch (Exception e) {
-                mLastError = e;
-                cancel(true);
-                return null;
-            }
-        }
-
-        /**
-         * Fetch a list of names and majors of students in a sample spreadsheet:
-         * https://docs.google.com/spreadsheets/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/edit
-         * @return List of names and majors
-         * @throws IOException
-         */
-        private List<String> getDataFromApi() throws IOException {
-            //String spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
-            String spreadsheetId = "1xk8AY8MOWiqwC3qvFEyOVN-wBdMtDW8QtirmcUkocrU";
-           // String range = "Class Data!A2:E";
-            String range = "A8:E8";
-            List<String> results = new ArrayList<String>();
-//            ValueRange response = this.mService.spreadsheets().values()
-//                    .get(spreadsheetId, range)
-//                    .execute();
-            List<Object> data1 = new ArrayList<Object>();
-            data1.add ("Ishaan");
-            data1.add("6544");
-            data1.add ("Tentative");
-            data1.add("4123");
-            data1.add("SRID");
-
-
-
-            List<List<Object>> data = new ArrayList<List<Object>>();
-            data.add (data1);
-//            List<List<String[]>> Updatevalues = Arrays.asList(
-//                    Arrays.asList(
-//                            new String[]{"Sunnel","657838292","Coming","4312","VGNP"},
-//                            new String[]{"Suraj","657838fds2","Tentative","4310","SRID"}
-//
-//                    )
-//                    // Additional rows ...
-//            );
-            ValueRange body = new ValueRange()
-                    .setValues(data);
-            UpdateValuesResponse result =
-                    this.mService.spreadsheets().values().update(spreadsheetId, range, body)
-                            .setValueInputOption("USER_ENTERED")
-                            .execute();
-          //  ValueRange response2 = this.mService.spreadsheets().values().update(spreadsheetId,range,)
-//            List<List<Object>> values = response.getValues();
-//            if (values != null) {
-//                results.add("Name,Number,Status,FolkID,FG");
-//                for (List row : values) {
-//                    results.add(row.get(0) + ", "+row.get(1)+"," +row.get(2)+"," +row.get(3)+"," +row.get(4));
-//                }
-//            }
-            return results;
-        }
-
-//        public void updateSheet()
-//        {
-//
-//        }
-
-        @Override
-        protected void onPreExecute() {
-            mOutputText.setText("");
-            mProgress.show();
-        }
-
-        @Override
-        protected void onPostExecute(List<String> output) {
-            mProgress.hide();
-            if (output == null || output.size() == 0) {
-                mOutputText.setText("No results returned.");
-            } else {
-                output.add(0, "Data retrieved using the Google Sheets API:");
-                mOutputText.setText(TextUtils.join("\n", output));
-            }
-        }
-
-        @Override
-        protected void onCancelled() {
-            mProgress.hide();
-            if (mLastError != null) {
-                if (mLastError instanceof GooglePlayServicesAvailabilityIOException) {
-                    showGooglePlayServicesAvailabilityErrorDialog(
-                            ((GooglePlayServicesAvailabilityIOException) mLastError)
-                                    .getConnectionStatusCode());
-                } else if (mLastError instanceof UserRecoverableAuthIOException) {
-                    startActivityForResult(
-                            ((UserRecoverableAuthIOException) mLastError).getIntent(),
-                            SyncData.REQUEST_AUTHORIZATION);
-                } else {
-                    mOutputText.setText("The following error occurred:\n"
-                            + mLastError.getMessage());
-                }
-            } else {
-                mOutputText.setText("Request cancelled.");
-            }
-        }
-    }
 }
