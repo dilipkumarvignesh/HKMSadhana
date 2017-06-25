@@ -19,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "SadhanaTracker.db";
     public static final String CONTACTS_TABLE_NAME = "SadhanaUpdate";
     public static final String CONTACTS_COLUMN_ID = "id";
-    public static final String CONTACTS_COLUMN_DATE = "date";
+    public static final String CONTACTS_COLUMN_DATE = "StrDate";
 //    public static final String CONTACTS_COLUMN_EMAIL = "email";
 //    public static final String CONTACTS_COLUMN_STREET = "street";
 //    public static final String CONTACTS_COLUMN_CITY = "place";
@@ -35,7 +35,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table SadhanaUpdate " +
-                        "(id integer, StrDate text , date integer, MA text, DA text, SB text, primary key(id,StrDate));"
+                        "(id integer, StrDate text, MA text, DA text, SB text,JapaNo integer,readingMinutes integer);"
         );
     }
 
@@ -46,16 +46,18 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertSadhana (long date,Context context, String MA, String DA, String SB) {
+    public boolean insertSadhana (String date,Context context, String MA, String DA, String SB,Integer JPNo, Integer readMin) {
 
 
         SQLiteDatabase db = this.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put("date", date);
+        contentValues.put("StrDate", date);
         contentValues.put("MA", MA);
         contentValues.put("DA", DA);
         contentValues.put("SB", SB);
+        contentValues.put("JapaNO",JPNo);
+        contentValues.put("readingMinutes",readMin);
 
         long rowInserted = db.insert("SadhanaUpdate", null, contentValues);
         if(rowInserted != -1)
@@ -101,7 +103,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select date,SB from SadhanaUpdate", null );
+        Cursor res =  db.rawQuery( "select * from SadhanaUpdate", null );
         res.moveToFirst();
 
         while(res.isAfterLast() == false){
@@ -111,4 +113,19 @@ public class DBHelper extends SQLiteOpenHelper {
 
         return array_list;
     }
+//    public ArrayList<SadhanaUpdate> getSadhanaHistory() {
+//        ArrayList<SadhanaUpdate> array_list = new ArrayList<SadhanaUpdate>();
+//
+//        //hp = new HashMap();
+//        SQLiteDatabase db = this.getReadableDatabase();
+//        Cursor res =  db.rawQuery( "select * from SadhanaUpdate", null );
+//        res.moveToFirst();
+//
+//        while(res.isAfterLast() == false){
+//            array_list.add((SadhanaUpdate) res);
+//            res.moveToNext();
+//        }
+//
+//        return array_list;
+//    }
 }

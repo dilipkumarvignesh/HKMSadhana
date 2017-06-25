@@ -31,15 +31,21 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
     private static final String PREF_ACCOUNT_NAME = "accountName";
     private static final String[] SCOPES = { SheetsScopes.SPREADSHEETS };
     private com.google.api.services.sheets.v4.Sheets mService = null;
+    public String updateSheetId;
+    public Integer operation;
+    public String historicalSheetId;
     private Exception mLastError = null;
 
-    MakeRequestTask(GoogleAccountCredential credential) {
+    MakeRequestTask(GoogleAccountCredential credential,String updateId) {
         HttpTransport transport = AndroidHttp.newCompatibleTransport();
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
         mService = new com.google.api.services.sheets.v4.Sheets.Builder(
                 transport, jsonFactory, credential)
                 .setApplicationName("Google Sheets API Android Quickstart")
                 .build();
+        Log.d("info","Inside Constructor ");
+        this.updateSheetId = updateId;
+        this.operation = operation;
     }
 
     /**
@@ -49,13 +55,16 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
     @Override
     protected List<String> doInBackground(Void... params) {
         try {
-            Log.d("info","Inside Background");
-            return getDataFromApi();
+                //return determine_call();
+                return updateSheet();
+
+
         } catch (Exception e) {
             mLastError = e;
             cancel(true);
             return null;
         }
+
     }
 
     /**
@@ -64,49 +73,59 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
      * @return List of names and majors
      * @throws IOException
      */
+//    public List<String> determine_call()
+//    {
+//        if(operation == 0
+//    }
     private List<String> getDataFromApi() throws IOException {
         //String spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
-        String spreadsheetId = "1xk8AY8MOWiqwC3qvFEyOVN-wBdMtDW8QtirmcUkocrU";
+     //   String spreadsheetId = "1xk8AY8MOWiqwC3qvFEyOVN-wBdMtDW8QtirmcUkocrU";
         // String range = "Class Data!A2:E";
-        String range = "A9:E9";
+        String range = "A2:E";
         Log.d("info","Insie getDataFromAPi");
+        Log.d("info","GID="+updateSheetId);
         List<String> results = new ArrayList<String>();
-//            ValueRange response = this.mService.spreadsheets().values()
-//                    .get(spreadsheetId, range)
-//                    .execute();
-        List<Object> data1 = new ArrayList<Object>();
-        data1.add ("Ishaan");
-        data1.add("6544");
-        data1.add ("Tentative");
-        data1.add("4123");
-        data1.add("SRID");
+            ValueRange response = this.mService.spreadsheets().values()
+                    .get(updateSheetId, range)
+                    .execute();
+        Log.d("info","response="+response);
 
 
-
-        List<List<Object>> data = new ArrayList<List<Object>>();
-        data.add (data1);
-
-        ValueRange body = new ValueRange()
-                .setValues(data);
-        UpdateValuesResponse result =
-                this.mService.spreadsheets().values().update(spreadsheetId, range, body)
-                        .setValueInputOption("USER_ENTERED")
-                        .execute();
-        //  ValueRange response2 = this.mService.spreadsheets().values().update(spreadsheetId,range,)
-//            List<List<Object>> values = response.getValues();
-//            if (values != null) {
-//                results.add("Name,Number,Status,FolkID,FG");
-//                for (List row : values) {
-//                    results.add(row.get(0) + ", "+row.get(1)+"," +row.get(2)+"," +row.get(3)+"," +row.get(4));
-//                }
-//            }
+            List<List<Object>> values = response.getValues();
+            Log.d("info","response="+values);
+            if (values != null) {
+                results.add("Name,Number,Status,FolkID,FG");
+                for (List row : values) {
+                    results.add(row.get(0) + ", "+row.get(1)+"," +row.get(2)+"," +row.get(3)+"," +row.get(4));
+                }
+            }
+        Log.d("info","results"+results);
         return results;
     }
 
-//        public void updateSheet()
-//        {
-//
-//        }
+        public List<String> updateSheet() throws IOException
+        {   String range = "A10:E10";
+            Log.d("info","Inside updateSheet");
+            List<Object> data1 = new ArrayList<Object>();
+            data1.add ("Ishaan");
+            data1.add("6544");
+            data1.add ("Tentative");
+            data1.add("4123");
+            data1.add("SRID");
+            List<String> results = new ArrayList<String>();
+
+
+            List<List<Object>> data = new ArrayList<List<Object>>();
+            data.add (data1);
+
+            ValueRange body = new ValueRange()
+                    .setValues(data);
+            UpdateValuesResponse result =
+                    this.mService.spreadsheets().values().update(updateSheetId, range, body)
+                            .setValueInputOption("USER_ENTERED")
+                            .execute();
+            return results;
+        }
 
     @Override
     protected void onPreExecute() {

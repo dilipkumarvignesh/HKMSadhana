@@ -43,10 +43,12 @@ import pub.devrel.easypermissions.EasyPermissions;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,Sync.OnFragmentInteractionListener,
-        HistoryFragment.OnListFragmentInteractionListener,
+        HistoryFragment.OnListFragmentInteractionListener,Update.OnFragmentInteractionListener,
+        Remainder.OnFragmentInteractionListener,
         EasyPermissions.PermissionCallbacks{
     TextView selectedDate;
     private DBHelper mydb ;
+    private String updateSheetId;
     int Gyear, Gmonth, Gday;
 
 
@@ -63,13 +65,31 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void onFragmentInteraction(){
+    public void onFragmentInteraction(String Tag, Object Data){
 //        SyncData sync_now = new SyncData();
 //        sync_now.getResultsFromApi();
-        Toast.makeText(getApplicationContext(), " Sync Button working",
-                Toast.LENGTH_LONG).show();
-        //new MakeRequestTask(mCredential).execute();
-        getResultsFromApi();
+        if (Tag.equals("Remainder"))
+        {
+            Toast.makeText(getApplicationContext(), " In Remainder",
+                    Toast.LENGTH_LONG).show();
+            //new MakeRequestTask(mCredential).execute();
+          //  getResultsFromApi();
+        }
+        else if (Tag.equals("Update"))
+        {
+            Toast.makeText(getApplicationContext(), " In Update",
+                    Toast.LENGTH_LONG).show();
+            //new MakeRequestTask(mCredential).execute();
+          //  getResultsFromApi();
+        }
+        else if (Tag.equals("Sync"))
+        {
+            Toast.makeText(getApplicationContext(), " In Sync",
+                    Toast.LENGTH_LONG).show();
+
+            getResultsFromApi();
+        }
+
     }
 
     @Override
@@ -91,8 +111,8 @@ public class MainActivity extends AppCompatActivity
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
         Log.d("info","GCredentialsMain="+mCredential);
-      //  insertTodaySadhana();
-
+        insertTodaySadhana();
+        updateSheetId= "1xk8AY8MOWiqwC3qvFEyOVN-wBdMtDW8QtirmcUkocrU";
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -143,7 +163,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.LENGTH_LONG).show();
         long date = System.currentTimeMillis() / 1000L;
         Log.d("info","date="+date);
-        mydb.insertSadhana(date,this,"YES","YES","YES");
+        mydb.insertSadhana("2017/06/24",this,"YES","YES","NO",16,50);
 
     }
     @Override
@@ -223,7 +243,7 @@ public class MainActivity extends AppCompatActivity
     }
     public void getSelectedDate(int year, int month, int day)
     {
-    selectedDate.setText(day+"."+month+"."+year);
+    //selectedDate.setText(day+"."+month+"."+year);
         Gyear = year;
         Gmonth = month;
         Gday = day;
@@ -342,7 +362,8 @@ public class MainActivity extends AppCompatActivity
         } else if (! isDeviceOnline()) {
            // mOutputText.setText("No network connection available.");
         } else {
-            new MakeRequestTask(mCredential).execute();
+            Integer operation = 1;
+            new MakeRequestTask(mCredential,updateSheetId).execute();
         }
     }
     private boolean isDeviceOnline() {
