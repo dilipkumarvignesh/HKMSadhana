@@ -8,7 +8,9 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
+import com.google.api.services.sheets.v4.model.Spreadsheet;
 import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
@@ -36,7 +38,7 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
     public String historicalSheetId;
     private Exception mLastError = null;
 
-    MakeRequestTask(GoogleAccountCredential credential,String updateId) {
+    MakeRequestTask(GoogleAccountCredential credential,String updateId,Integer operation) {
         HttpTransport transport = AndroidHttp.newCompatibleTransport();
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
         mService = new com.google.api.services.sheets.v4.Sheets.Builder(
@@ -56,7 +58,12 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
     protected List<String> doInBackground(Void... params) {
         try {
                 //return determine_call();
-                return updateSheet();
+                if (operation ==0)
+                    return updateSheet();
+                else if(operation ==1)
+                    return getDataFromApi();
+                else if (operation ==2)
+                    return createSheet();
 
 
         } catch (Exception e) {
@@ -64,7 +71,7 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
             cancel(true);
             return null;
         }
-
+        return null;
     }
 
     /**
@@ -77,6 +84,18 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
 //    {
 //        if(operation == 0
 //    }
+    public List<String> createSheet() throws IOException{
+        Spreadsheet requestBody = new Spreadsheet();
+        Sheets.Spreadsheets.Create request = this.mService.spreadsheets().create(requestBody);
+
+        Spreadsheet response = request.execute();
+        String spreadSheetId = response.getSpreadsheetId();
+        Log.d("info","SpreadSheetId="+spreadSheetId);
+        List<String> results = new ArrayList<String>();
+        results.add(spreadSheetId);
+        return results;
+
+    }
     private List<String> getDataFromApi() throws IOException {
         //String spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
      //   String spreadsheetId = "1xk8AY8MOWiqwC3qvFEyOVN-wBdMtDW8QtirmcUkocrU";
@@ -104,7 +123,7 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
     }
 
         public List<String> updateSheet() throws IOException
-        {   String range = "A10:E10";
+        {   String range = "A11:E11";
             Log.d("info","Inside updateSheet");
             List<Object> data1 = new ArrayList<Object>();
             data1.add ("Ishaan");

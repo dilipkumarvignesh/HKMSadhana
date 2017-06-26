@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(getApplicationContext(), " In Update",
                     Toast.LENGTH_LONG).show();
             //new MakeRequestTask(mCredential).execute();
-          //  getResultsFromApi();
+            getResultsFromApi();
         }
         else if (Tag.equals("Sync"))
         {
@@ -133,25 +133,7 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
        // selectedDate = (TextView)findViewById(R.id.date);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-       // Button Save = (Button) findViewById(R.id.Save);
-//        Save.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-////                        .setAction("Action", null).show();
-//              insertTodaySadhana();
-//            }
-//        });
 
-        //Button Sync = (Button) findViewById(R.id.Sync);
-//        Sync.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-////                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-////                        .setAction("Action", null).show();
-//                syncData();
-//            }
-//        });
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -378,7 +360,8 @@ public class MainActivity extends AppCompatActivity
            // mOutputText.setText("No network connection available.");
         } else {
             Integer operation = 1;
-            new MakeRequestTask(mCredential,updateSheetId).execute();
+            Log.d("info","Inside getResults");
+            new MakeRequestTask(mCredential,updateSheetId,2).execute();
         }
     }
     private boolean isDeviceOnline() {
