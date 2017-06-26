@@ -1,6 +1,7 @@
 package iskconbangalore.org.hkmsadhana;
 
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -17,8 +18,6 @@ import com.google.api.services.sheets.v4.model.ValueRange;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-
-import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by i308830 on 6/22/17.
@@ -64,11 +63,11 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
                 Log.d("info","Inside Do in Background");
                 //return determine_call();
                 if (operation ==0)
-                    return updateSheet();
+                    return createSheet();
                 else if(operation ==1)
                     return getDataFromApi();
                 else if (operation ==2)
-                    return createSheet();
+                    return updateSheet();
 
 
         } catch (Exception e) {
@@ -103,12 +102,12 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
 //        Log.d("info","Inside CreateSheet");
 //        Spreadsheet response = request.execute();
 //        Log.d("info","GsheetRespone:"+response);
-//        String spreadSheetId = response.getSpreadsheetId();
-//        Log.d("info","SpreadSheetId="+spreadSheetId);
+        String spreadSheetId = request.getSpreadsheetId();
+        Log.d("info","SpreadSheetId="+spreadSheetId);
 
         List<String> results = new ArrayList<String>();
-//        results.add(spreadSheetId);
-        Log.d("info","GSheetIdList:"+results);
+        results.add(spreadSheetId);
+        Log.d("info", "GSheetIdList:" + results);
         return results;
 
     }
@@ -127,14 +126,15 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
 
 
             List<List<Object>> values = response.getValues();
-            Log.d("info","response="+values);
+            Log.d("info", "response=" + values);
             if (values != null) {
                 results.add("Name,Number,Status,FolkID,FG");
                 for (List row : values) {
                     results.add(row.get(0) + ", "+row.get(1)+"," +row.get(2)+"," +row.get(3)+"," +row.get(4));
                 }
             }
-        Log.d("info","results"+results);
+        createSheet();
+        Log.d("info", "results" + results);
         return results;
     }
 
@@ -171,12 +171,14 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
     @Override
     protected void onPostExecute(List<String> output) {
 
-        if (operation ==2)
+        if (operation == 0)
         {
-            SharedPreferences sheetId = Ma.getSharedPreferences("GoogleSheetId", MODE_PRIVATE);
-            sheetId.edit()
-                    .putString("gSheetId", output.get(0));
+            SharedPreferences sheetId = Ma.getSharedPreferences("GoogleSheetId", Ma.MODE_PRIVATE);
+            Editor edit= sheetId.edit();
+            edit.putString("gSheetId", output.get(0).toString());
+            edit.commit();
             Log.d("info","gSheetId="+output.get(0));
+            Log.d("info","Final Value="+sheetId.getString("gSheetId",""));
         }
     }
 

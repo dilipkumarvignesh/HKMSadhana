@@ -129,12 +129,12 @@ public class MainActivity extends AppCompatActivity
        // insertTodaySadhana();
         SharedPreferences sheetId = this.getSharedPreferences("GoogleSheetId", MODE_PRIVATE);
         String sheetIdValue = sheetId.getString("gSheetId", "");
-        updateSheetId= "1xk8AY8MOWiqwC3qvFEyOVN-wBdMtDW8QtirmcUkocrU";
+        updateSheetId= sheetIdValue;
         if ( sheetIdValue == "")
         {
             Toast.makeText(getApplicationContext(), " No Google Sheet Id.",
                     Toast.LENGTH_LONG).show();
-            new MakeRequestTask(mCredential,updateSheetId,1,this).execute();
+
         }
 
 //        Editor edit = sheetId.edit();
