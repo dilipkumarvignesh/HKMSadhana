@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity
         {
             Toast.makeText(getApplicationContext(), " In Remainder",
                     Toast.LENGTH_LONG).show();
+            mydb.getSadhanaHistory();
             //new MakeRequestTask(mCredential).execute();
           //  getResultsFromApi();
         }
@@ -87,7 +88,8 @@ public class MainActivity extends AppCompatActivity
             Toast.makeText(getApplicationContext(), " In Sync",
                     Toast.LENGTH_LONG).show();
 
-            getResultsFromApi();
+            //getResultsFromApi();
+           // mydb.getSadhanaHistory();
         }
         else if (Tag.equals("Summary"))
         {

@@ -21,10 +21,12 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String CONTACTS_TABLE_NAME = "SadhanaUpdate";
     public static final String CONTACTS_COLUMN_ID = "id";
     public static final String CONTACTS_COLUMN_DATE = "StrDate";
-//    public static final String CONTACTS_COLUMN_EMAIL = "email";
-//    public static final String CONTACTS_COLUMN_STREET = "street";
-//    public static final String CONTACTS_COLUMN_CITY = "place";
-//    public static final String CONTACTS_COLUMN_PHONE = "phone";
+    public static final String CONTACTS_COLUMN_MA= "MA";
+    public static final String CONTACTS_COLUMN_DA = "DA";
+    public static final String CONTACTS_COLUMN_SB = "SB";
+    public static final String CONTACTS_COLUMN_JAPA = "JapaNo";
+    public static final String CONTACTS_COLUMN_RM = "readingMinutes";
+
 //    private HashMap hp;
 
     public DBHelper(Context context) {
@@ -148,20 +150,29 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[] { Integer.toString(id) });
     }
 
-    public ArrayList<String> getSadhanaHistory() {
-        ArrayList<String> array_list = new ArrayList<String>();
+    public ArrayList<ArrayList<String>> getSadhanaHistory() {
+        ArrayList<ArrayList<String>> outer = new ArrayList<ArrayList<String>>();
+        ArrayList<String> inner = new ArrayList<String>();
+
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from SadhanaUpdate", null );
+        Cursor res =  db.rawQuery( "select StrDate,MA from SadhanaUpdate", null );
         res.moveToFirst();
-
+        Log.d("info","Inside Sadhanahistory:"+res);
         while(res.isAfterLast() == false){
-            array_list.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_DATE)));
-            res.moveToNext();
+          //  inner.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_DATE)));
+          //  inner.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_MA)));
+//            inner.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_DA)));
+//            inner.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_SB)));
+//            Integer Japa = res.getInt(res.getColumnIndex(CONTACTS_COLUMN_JAPA));
+//            inner.add(Japa.toString());
+//            Integer RM = res.getInt(res.getColumnIndex(CONTACTS_COLUMN_RM));
+//            inner.add(RM.toString());
+           // outer.add(inner);
         }
-
-        return array_list;
+        Log.d("info","Sadhanadata:"+outer);
+        return outer;
     }
 //    public ArrayList<SadhanaUpdate> getSadhanaHistory() {
 //        ArrayList<SadhanaUpdate> array_list = new ArrayList<SadhanaUpdate>();
