@@ -127,7 +127,18 @@ public class MainActivity extends AppCompatActivity
                 .setBackOff(new ExponentialBackOff());
         Log.d("info","GCredentialsMain="+mCredential);
        // insertTodaySadhana();
+        SharedPreferences sheetId = this.getSharedPreferences("GoogleSheetId", MODE_PRIVATE);
+        String sheetIdValue = sheetId.getString("gSheetId", "");
         updateSheetId= "1xk8AY8MOWiqwC3qvFEyOVN-wBdMtDW8QtirmcUkocrU";
+        if ( sheetIdValue == "")
+        {
+            Toast.makeText(getApplicationContext(), " No Google Sheet Id.",
+                    Toast.LENGTH_LONG).show();
+            new MakeRequestTask(mCredential,updateSheetId,1,this).execute();
+        }
+
+//        Editor edit = sheetId.edit();
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -361,7 +372,7 @@ public class MainActivity extends AppCompatActivity
         } else {
             Integer operation = 1;
             Log.d("info","Inside getResults");
-            new MakeRequestTask(mCredential,updateSheetId,2).execute();
+            new MakeRequestTask(mCredential,updateSheetId,2,this).execute();
         }
     }
     private boolean isDeviceOnline() {

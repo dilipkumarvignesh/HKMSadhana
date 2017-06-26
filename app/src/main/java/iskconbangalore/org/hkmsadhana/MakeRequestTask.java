@@ -1,5 +1,6 @@
 package iskconbangalore.org.hkmsadhana;
 
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 
@@ -8,7 +9,6 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
 import com.google.api.services.sheets.v4.model.Spreadsheet;
 import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
@@ -17,6 +17,8 @@ import com.google.api.services.sheets.v4.model.ValueRange;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * Created by i308830 on 6/22/17.
@@ -37,8 +39,9 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
     public Integer operation;
     public String historicalSheetId;
     private Exception mLastError = null;
+    private MainActivity Ma;
 
-    MakeRequestTask(GoogleAccountCredential credential,String updateId,Integer operation) {
+    MakeRequestTask(GoogleAccountCredential credential,String updateId,Integer operation, MainActivity con) {
         HttpTransport transport = AndroidHttp.newCompatibleTransport();
         JsonFactory jsonFactory = JacksonFactory.getDefaultInstance();
         mService = new com.google.api.services.sheets.v4.Sheets.Builder(
@@ -48,6 +51,7 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
         Log.d("info","Inside Constructor ");
         this.updateSheetId = updateId;
         this.operation = operation;
+        this.Ma = con;
     }
 
     /**
@@ -57,6 +61,7 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
     @Override
     protected List<String> doInBackground(Void... params) {
         try {
+                Log.d("info","Inside Do in Background");
                 //return determine_call();
                 if (operation ==0)
                     return updateSheet();
@@ -86,13 +91,24 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
 //    }
     public List<String> createSheet() throws IOException{
         Spreadsheet requestBody = new Spreadsheet();
-        Sheets.Spreadsheets.Create request = this.mService.spreadsheets().create(requestBody);
 
-        Spreadsheet response = request.execute();
-        String spreadSheetId = response.getSpreadsheetId();
-        Log.d("info","SpreadSheetId="+spreadSheetId);
+       // Sheets sheetsService = createSheetsService();
+        Spreadsheet request = this.mService.spreadsheets().create(requestBody).execute();
+        Log.d("info","Request:"+request);
+
+      //  Spreadsheet response = request.execute();
+
+//        Spreadsheet requestBody = new Spreadsheet();
+//        Sheets.Spreadsheets.Create request = this.mService.spreadsheets().create(requestBody);
+//        Log.d("info","Inside CreateSheet");
+//        Spreadsheet response = request.execute();
+//        Log.d("info","GsheetRespone:"+response);
+//        String spreadSheetId = response.getSpreadsheetId();
+//        Log.d("info","SpreadSheetId="+spreadSheetId);
+
         List<String> results = new ArrayList<String>();
-        results.add(spreadSheetId);
+//        results.add(spreadSheetId);
+        Log.d("info","GSheetIdList:"+results);
         return results;
 
     }
@@ -123,10 +139,10 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
     }
 
         public List<String> updateSheet() throws IOException
-        {   String range = "A11:E11";
+        {   String range = "A12:E12";
             Log.d("info","Inside updateSheet");
             List<Object> data1 = new ArrayList<Object>();
-            data1.add ("Ishaan");
+            data1.add ("Sameer");
             data1.add("6544");
             data1.add ("Tentative");
             data1.add("4123");
@@ -154,13 +170,14 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
 
     @Override
     protected void onPostExecute(List<String> output) {
-//        mProgress.hide();
-//        if (output == null || output.size() == 0) {
-//            mOutputText.setText("No results returned.");
-//        } else {
-//            output.add(0, "Data retrieved using the Google Sheets API:");
-//            mOutputText.setText(TextUtils.join("\n", output));
-//        }
+
+        if (operation ==2)
+        {
+            SharedPreferences sheetId = Ma.getSharedPreferences("GoogleSheetId", MODE_PRIVATE);
+            sheetId.edit()
+                    .putString("gSheetId", output.get(0));
+            Log.d("info","gSheetId="+output.get(0));
+        }
     }
 
     @Override
