@@ -44,7 +44,7 @@ import pub.devrel.easypermissions.EasyPermissions;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,Sync.OnFragmentInteractionListener,
         HistoryFragment.OnListFragmentInteractionListener,Update.OnFragmentInteractionListener,
-        Remainder.OnFragmentInteractionListener,
+        Remainder.OnFragmentInteractionListener,Summary.OnFragmentInteractionListener,
         EasyPermissions.PermissionCallbacks{
     TextView selectedDate;
     private DBHelper mydb ;
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void onFragmentInteraction(String Tag, Object Data){
+    public Object onFragmentInteraction(String Tag, Object Data){
 //        SyncData sync_now = new SyncData();
 //        sync_now.getResultsFromApi();
         if (Tag.equals("Remainder"))
@@ -89,8 +89,23 @@ public class MainActivity extends AppCompatActivity
 
             getResultsFromApi();
         }
+        else if (Tag.equals("Summary"))
+        {
+            Toast.makeText(getApplicationContext(), " In Summary",
+                    Toast.LENGTH_LONG).show();
+
+            String[] Summarydata = (String[])Data;
+            Log.d("Info","ObjectData="+Summarydata[0].toString()+" "+Summarydata[1].toString());
+            //getHistorySummary();
+           //getHistorySummary(Summarydata[0].toString(),Summarydata[1].toString());
+            Double[] result = mydb.getSummarydB(Summarydata[0].toString(),Summarydata[1].toString());
+            return result;
+        }
+        return null;
 
     }
+
+
 
     @Override
     public void onListFragmentInteraction()
@@ -111,7 +126,7 @@ public class MainActivity extends AppCompatActivity
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
         Log.d("info","GCredentialsMain="+mCredential);
-        insertTodaySadhana();
+       // insertTodaySadhana();
         updateSheetId= "1xk8AY8MOWiqwC3qvFEyOVN-wBdMtDW8QtirmcUkocrU";
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -213,7 +228,7 @@ public class MainActivity extends AppCompatActivity
             fragment = new Remainder();
 
         } else if (id == R.id.nav_slideshow) {
-            fragment = new HistoryFragment();
+            fragment = new Summary();
 
         } else if (id == R.id.nav_manage) {
             fragment = new Sync();

@@ -10,6 +10,7 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table SadhanaUpdate " +
-                        "(id integer, StrDate text, MA text, DA text, SB text,JapaNo integer,readingMinutes integer);"
+                        "(StrDate text primary key, MA text, DA text, SB text,JapaNo integer,readingMinutes integer);"
         );
     }
 
@@ -46,6 +47,55 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
+    public Double[] getSummarydB(String year, String month)
+    {    String query ="";
+        Cursor res;
+        SQLiteDatabase db = this.getReadableDatabase();
+        String StartDate = year+"/"+month+"/01";
+        String EndDate = year+"/"+month+"/31";
+        query = "select COUNT(*) MAtotal,"+
+                "sum(case when MA = 'YES' then 1 else 0 end) MAYES,"+
+                "sum(case when MA = 'LATE' then 1 else 0 end) MALATE,"+
+                "sum(case when MA = 'SICK' OR MA = 'AS' OR MA = 'OS' then 1 else 0 end) MAEXCUSE,"+
+                "sum(case when DA = 'YES' then 1 else 0 end) DAYES,"+
+                "sum(case when DA = 'LATE' then 1 else 0 end) DALATE,"+
+                "sum(case when DA = 'SICK' OR DA = 'AS' OR DA = 'OS' then 1 else 0 end) DAEXCUSE,"+
+                "sum(case when SB = 'YES' then 1 else 0 end) SBYES,"+
+                "sum(case when SB = 'LATE' then 1 else 0 end) SBLATE,"+
+                "sum(case when SB = 'SICK' OR SB = 'AS' OR SB = 'OS' then 1 else 0 end) SBEXCUSE,"+
+                "sum(readingMinutes) read,"+
+                "avg(japaNo) japa "+
+                "from sadhanaUpdate  where StrDate between  '"+StartDate+"' and '"+EndDate+"'";
+        Log.d("info","Query Data="+query);
+       // Log.d("info","Query Data="+StartDate+" , "+EndDate);
+//        query = "select count(*) from SadhanaUpdate where StrDate between  '"+StartDate+"' and '"+EndDate+"'";
+        res = db.rawQuery(query, null );
+        res.moveToFirst();
+        Integer TotalCount = res.getInt(0);
+        Integer MaYesCount = res.getInt(1);
+        Integer MaCountLate = res.getInt(2);
+        Integer MaExcuseCount = res.getInt(3);
+        Integer DaYesCount = res.getInt(4);
+        Integer DaCountLate = res.getInt(5);
+        Integer DaExcuseCount = res.getInt(6);
+        Integer SbYesCount = res.getInt(7);
+        Integer SbCountLate = res.getInt(8);
+        Integer SbExcuseCount = res.getInt(9);
+
+        Double ReadTime = (1.0*res.getInt(10))/60;
+        Double japa = res.getDouble(11);
+        Double MaFinalValue = ((100.0*MaYesCount)+(50*MaCountLate))/(TotalCount - MaExcuseCount);
+        Double DaFinalValue = ((100.0*DaYesCount)+(50*DaCountLate))/(TotalCount - DaExcuseCount);
+        Double SbFinalValue = ((100.0*SbYesCount)+(50*SbCountLate))/(TotalCount - SbExcuseCount);
+
+
+//
+        Double[] QueryResult = {MaFinalValue,DaFinalValue,SbFinalValue,japa, ReadTime};
+//         Log.d("info","QueryResult="+QueryResult);
+
+         return QueryResult;
+
+    }
     public boolean insertSadhana (String date,Context context, String MA, String DA, String SB,Integer JPNo, Integer readMin) {
 
 

@@ -103,6 +103,6 @@ public class Update extends Fragment {
      */
     public interface OnFragmentInteractionListener<T> {
         // TODO: Update argument type and name
-        void onFragmentInteraction(String Tag, Object Data);
+        Object onFragmentInteraction(String Tag, Object Data);
     }
 }

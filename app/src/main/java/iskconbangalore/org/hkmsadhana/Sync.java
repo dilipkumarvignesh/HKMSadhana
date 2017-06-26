@@ -83,7 +83,7 @@ public class Sync extends Fragment {
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed() {
         if (mListener != null) {
-            mListener.onFragmentInteraction("Sync","SyncTag");
+           Object retValue= mListener.onFragmentInteraction("Sync","SyncTag");
         }
     }
 
@@ -116,6 +116,6 @@ public class Sync extends Fragment {
      */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
-        void onFragmentInteraction(String Tag,Object Data);
+         Object onFragmentInteraction(String Tag,Object Data);
     }
 }
