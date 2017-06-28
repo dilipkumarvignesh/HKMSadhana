@@ -14,7 +14,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/Weekday"
+            android:id="@+id/SelectedDay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -501,7 +501,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick=" showDatePickerDialog"
-            app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+            app:srcCompat="@android:drawable/ic_menu_my_calendar"
+             />
 
         <ImageButton
             android:id="@+id/imageButton2"

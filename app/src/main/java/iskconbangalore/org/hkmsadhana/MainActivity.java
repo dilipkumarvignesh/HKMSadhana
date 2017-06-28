@@ -32,13 +32,18 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 import com.google.api.client.util.ExponentialBackOff;
 import com.google.api.services.sheets.v4.SheetsScopes;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
+
+;
 
 //import android.app.DialogFragment;
 
@@ -131,6 +136,11 @@ public class MainActivity extends AppCompatActivity
         FragmentManager fragmentManager = getSupportFragmentManager();
 
         fragmentManager.beginTransaction().replace(R.id.main_layout, new Update()).commit();
+        try {
+            getDate();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
@@ -431,13 +441,19 @@ public class MainActivity extends AppCompatActivity
         dialog.show();
     }
 
-    void getDate()
-    {
+    void getDate() throws ParseException {
         Calendar now = Calendar.getInstance();
         int year = now.get(Calendar.YEAR);
         int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
         int day = now.get(Calendar.DAY_OF_MONTH);
         Log.d("info","Date Values:"+month+","+day);
+
+        SimpleDateFormat newDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date MyDate = newDateFormat.parse("28/06/2017");
+        newDateFormat.applyPattern("EEEE d MMM yyyy");
+        String MyDatestr = newDateFormat.format(MyDate);
+        Log.d("info","SelectedDate:"+MyDatestr);
+
     }
 
 }
