@@ -3,10 +3,12 @@ package iskconbangalore.org.hkmsadhana;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 
 
 /**
@@ -64,7 +66,23 @@ public class Update extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_update, container, false);
+
+        View view =  inflater.inflate(R.layout.fragment_update, container, false);
+        ImageButton fab = (ImageButton)view.findViewById(R.id.datePicker);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+                showDatePickerDialog(view);
+            }
+        });
+        return view;
+    }
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.show(getFragmentManager(), "datePicker");
     }
 
     // TODO: Rename method, update argument and hook method into UI event

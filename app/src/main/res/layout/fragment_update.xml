@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/HomeFrame"
     android:layout_width="match_parent"
@@ -67,8 +68,7 @@
     <LinearLayout
         android:id="@+id/MALayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_height="63dp"
         android:orientation="horizontal">
 
         <Button
@@ -187,8 +187,7 @@
     <LinearLayout
         android:id="@+id/SBLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
@@ -309,8 +308,7 @@
     <LinearLayout
         android:id="@+id/DALayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
@@ -427,16 +425,14 @@
     <LinearLayout
         android:id="@+id/JPLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/JPButton"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_width="99dp"
+            android:layout_height="wrap_content"
             android:text="JP"
             android:visibility="visible" />
 
@@ -451,7 +447,7 @@
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_weight="0.06" />
 
         </LinearLayout>
 
@@ -460,16 +456,14 @@
     <LinearLayout
         android:id="@+id/BRLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/BRButton"
             style="@style/Widget.AppCompat.Button"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
+            android:layout_width="101dp"
+            android:layout_height="wrap_content"
             android:text="BR"
             android:visibility="visible" />
 
@@ -478,22 +472,43 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:weightSum="1">
 
             <EditText
                 android:id="@+id/book_reading_mins"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:ems="10"
                 android:gravity="center|clip_vertical"
                 android:inputType="textPersonName"
-                android:text="Book Reading in Mins " />
+                android:text="Book Reading in Mins "
+                android:layout_weight="0.20" />
 
         </LinearLayout>
 
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="horizontal">
+
+        <ImageButton
+            android:id="@+id/datePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick=" showDatePickerDialog"
+            app:srcCompat="@android:drawable/ic_menu_my_calendar" />
+
+        <ImageButton
+            android:id="@+id/imageButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@android:drawable/ic_popup_sync" />
+
+    </LinearLayout>
 
 
 </LinearLayout>
