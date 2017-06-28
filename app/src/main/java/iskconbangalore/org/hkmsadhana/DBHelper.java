@@ -150,26 +150,32 @@ public class DBHelper extends SQLiteOpenHelper {
                 new String[] { Integer.toString(id) });
     }
 
-    public ArrayList<ArrayList<String>> getSadhanaHistory() {
-        ArrayList<ArrayList<String>> outer = new ArrayList<ArrayList<String>>();
-        ArrayList<String> inner = new ArrayList<String>();
+    public ArrayList<SadhanaUpdate> getSadhanaHistory() {
+        ArrayList<SadhanaUpdate> outer = new ArrayList<>();
 
+        String date, MA, JapaRounds, DA,SB, RMin ;
 
         //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select StrDate,MA from SadhanaUpdate", null );
+        Cursor res =  db.rawQuery( "select * from SadhanaUpdate", null );
         res.moveToFirst();
+        int counter = 0;
         Log.d("info","Inside Sadhanahistory:"+res);
         while(res.isAfterLast() == false){
-          //  inner.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_DATE)));
-          //  inner.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_MA)));
-//            inner.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_DA)));
-//            inner.add(res.getString(res.getColumnIndex(CONTACTS_COLUMN_SB)));
-//            Integer Japa = res.getInt(res.getColumnIndex(CONTACTS_COLUMN_JAPA));
-//            inner.add(Japa.toString());
-//            Integer RM = res.getInt(res.getColumnIndex(CONTACTS_COLUMN_RM));
-//            inner.add(RM.toString());
-           // outer.add(inner);
+            Log.d("info","Counter:"+counter);
+            counter = counter+1;
+            date= res.getString(res.getColumnIndex(CONTACTS_COLUMN_DATE));
+            MA= res.getString(res.getColumnIndex(CONTACTS_COLUMN_MA));
+            DA=res.getString(res.getColumnIndex(CONTACTS_COLUMN_DA));
+            SB=res.getString(res.getColumnIndex(CONTACTS_COLUMN_SB));
+            Integer Japa = res.getInt(res.getColumnIndex(CONTACTS_COLUMN_JAPA));
+            JapaRounds = Japa.toString();
+            Integer RM = res.getInt(res.getColumnIndex(CONTACTS_COLUMN_RM));
+            RMin=RM.toString();
+            SadhanaUpdate obj = new SadhanaUpdate(date,MA,DA,SB,JapaRounds,RMin);
+            outer.add(obj);
+            res.moveToNext();
+
         }
         Log.d("info","Sadhanadata:"+outer);
         return outer;

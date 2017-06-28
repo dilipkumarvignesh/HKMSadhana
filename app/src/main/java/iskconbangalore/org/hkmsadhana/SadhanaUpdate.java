@@ -5,12 +5,14 @@ package iskconbangalore.org.hkmsadhana;
  */
 
 public class SadhanaUpdate {
-    public String updateDate, MA, SB, DA;
+    public String updateDate, MA, SB, DA, Japa, RM;
 
-    public SadhanaUpdate(String updateDate, String MA, String SB, String DA) {
+    public SadhanaUpdate(String updateDate, String MA, String DA, String SB,String Japa, String RM ) {
         this.updateDate = updateDate;
         this.MA = MA;
         this.SB = SB;
         this.DA = DA;
+        this.Japa = Japa;
+        this.RM = RM;
     }
 }

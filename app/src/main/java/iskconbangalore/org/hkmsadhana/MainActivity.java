@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity
                     Toast.LENGTH_LONG).show();
 
             //getResultsFromApi();
-           // mydb.getSadhanaHistory();
+            mydb.getSadhanaHistory();
         }
         else if (Tag.equals("Summary"))
         {
