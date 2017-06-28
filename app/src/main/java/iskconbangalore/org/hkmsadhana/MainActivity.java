@@ -33,7 +33,9 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 import com.google.api.client.util.ExponentialBackOff;
 import com.google.api.services.sheets.v4.SheetsScopes;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
@@ -85,11 +87,19 @@ public class MainActivity extends AppCompatActivity
         }
         else if (Tag.equals("Sync"))
         {
+            ArrayList <SadhanaUpdate> UpdateSadhanaHistory = new ArrayList<>();
+            SadhanaUpdate acc;
             Toast.makeText(getApplicationContext(), " In Sync",
                     Toast.LENGTH_LONG).show();
 
             //getResultsFromApi();
-            mydb.getSadhanaHistory();
+            UpdateSadhanaHistory=mydb.getSadhanaHistory();
+            Log.d("info","UpdateSadhanaHistory:"+UpdateSadhanaHistory.size());
+            for (int i = 0;i<UpdateSadhanaHistory.size();i++)
+            {
+               acc = UpdateSadhanaHistory.get(i);
+                Log.d("info","Date:"+acc.updateDate.toString());
+            }
         }
         else if (Tag.equals("Summary"))
         {
@@ -119,6 +129,9 @@ public class MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+
+        fragmentManager.beginTransaction().replace(R.id.main_layout, new Update()).commit();
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
@@ -426,6 +439,15 @@ public class MainActivity extends AppCompatActivity
                 connectionStatusCode,
                 REQUEST_GOOGLE_PLAY_SERVICES);
         dialog.show();
+    }
+
+    void getDate()
+    {
+        Calendar now = Calendar.getInstance();
+        int year = now.get(Calendar.YEAR);
+        int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
+        int day = now.get(Calendar.DAY_OF_MONTH);
+        Log.d("info","Date Values:"+month+","+day);
     }
 
 }
