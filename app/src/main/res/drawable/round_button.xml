@@ -46,12 +46,12 @@
                 android:width="10dp"></size>
 
             <gradient
-                android:endColor="#c8c980"
-                android:startColor="#c1c425"
-                android:angle="90" />
+                android:endColor="#b3e2e1"
+                android:startColor="#17efe8"
+                android:angle="270" />
             <stroke
                 android:width="3dp"
-                android:color="#749b52" />
+                android:color="#02ddd6" />
 
         </shape>
     </item>
