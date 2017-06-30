@@ -10,24 +10,26 @@
     <LinearLayout
         android:id="@+id/Date"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/SelectedDay"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:fontFamily="cursive"
+            android:layout_weight="0.5"
+            android:fontFamily="sans-serif-condensed"
             android:text="Sunday"
             android:textAlignment="center"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textSize="36sp"
             android:textStyle="bold" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_weight="0.5"
             android:orientation="horizontal">
 
             <TextView
@@ -35,10 +37,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="cursive"
+                android:fontFamily="serif-monospace"
                 android:text="25"
                 android:textAlignment="center"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -46,10 +49,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="cursive"
+                android:fontFamily="serif-monospace"
                 android:text="June"
                 android:textAlignment="center"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textSize="30sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -57,10 +61,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:fontFamily="cursive"
+                android:fontFamily="serif-monospace"
                 android:text="2017"
                 android:textAlignment="center"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
+                android:textSize="30sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
@@ -68,7 +73,7 @@
     <LinearLayout
         android:id="@+id/MALayout"
         android:layout_width="match_parent"
-        android:layout_height="63dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <Button
@@ -86,7 +91,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="10dp">
 
             <LinearLayout
                 android:id="@+id/MAAttendedLayout"
@@ -101,7 +107,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    android:background="#34a900"
+                    android:background="#c999b2"
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="Yes"
@@ -114,7 +120,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    android:background="#ecd300"
+                    android:background="#a1d1a1"
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="Late"
@@ -127,7 +133,7 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    android:background="#ff0600"
+                    android:background="#c999b2"
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="No"
@@ -184,6 +190,7 @@
 
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/SBLayout"
         android:layout_width="match_parent"
@@ -211,7 +218,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
 
                 <TextView
                     android:id="@+id/SBYes"
@@ -302,9 +310,8 @@
         </LinearLayout>
 
 
-
-
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/DALayout"
         android:layout_width="match_parent"
@@ -332,7 +339,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingTop="10dp">
 
                 <TextView
                     android:id="@+id/DAYes"
@@ -342,7 +350,6 @@
                     android:layout_weight="1"
                     android:background="#34a900"
                     android:gravity="center_vertical"
-                    android:padding="2dp"
                     android:text="Yes"
                     android:textAlignment="center"
                     android:textColor="#fff" />
@@ -422,6 +429,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
     <LinearLayout
         android:id="@+id/JPLayout"
         android:layout_width="match_parent"
@@ -479,12 +487,12 @@
                 android:id="@+id/book_reading_mins"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ems="10"
+                android:layout_weight="0.20"
 
+                android:ems="10"
                 android:gravity="center|clip_vertical"
                 android:inputType="number"
-                android:text="Book Reading in Mins "
-                android:layout_weight="0.20" />
+                android:text="Book Reading in Mins " />
 
         </LinearLayout>
 
@@ -492,8 +500,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="bottom|center_horizontal"
+        android:layout_height="wrap_content"
+        android:gravity="bottom|center_horizontal|center"
         android:orientation="horizontal">
 
         <ImageButton
@@ -501,8 +509,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:onClick=" showDatePickerDialog"
-            app:srcCompat="@android:drawable/ic_menu_my_calendar"
-             />
+            app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
         <ImageButton
             android:id="@+id/imageButton2"
