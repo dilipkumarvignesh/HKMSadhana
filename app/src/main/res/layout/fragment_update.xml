@@ -12,6 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_gravity="center"
+        android:background="#dee5e0"
         android:orientation="vertical">
 
         <TextView
@@ -34,7 +35,7 @@
 
             <TextView
                 android:id="@+id/dd"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="serif-monospace"
@@ -46,7 +47,7 @@
 
             <TextView
                 android:id="@+id/mm"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="serif-monospace"
@@ -58,7 +59,7 @@
 
             <TextView
                 android:id="@+id/yyyy"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="serif-monospace"
@@ -112,12 +113,12 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    android:background="#c999b2"
+                    android:background="#bec4c0"
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="Yes"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#25422d" />
 
                 <TextView
                     android:id="@+id/MALate"
@@ -125,12 +126,12 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    android:background="#a1d1a1"
+                    android:background="#bec4c0"
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="Late"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#25422d" />
 
                 <TextView
                     android:id="@+id/MANo"
@@ -138,12 +139,12 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    android:background="#c999b2"
+                    android:background="#bec4c0"
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="No"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#25422d" />
             </LinearLayout>
 
             <LinearLayout
@@ -233,12 +234,12 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    android:background="#34a900"
+                    android:background="#bec4c0"
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="Yes"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#25422d" />
 
                 <TextView
                     android:id="@+id/SBLate"
@@ -246,12 +247,12 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    android:background="#ecd300"
+                    android:background="#bec4c0"
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="Late"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#25422d" />
 
                 <TextView
                     android:id="@+id/SBNo"
@@ -259,12 +260,12 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    android:background="#ff0600"
+                    android:background="#bec4c0"
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="No"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#25422d" />
             </LinearLayout>
 
             <LinearLayout
@@ -355,11 +356,11 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    android:background="#34a900"
+                    android:background="#bec4c0"
                     android:gravity="center_vertical"
                     android:text="Yes"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#25422d" />
 
                 <TextView
                     android:id="@+id/DALate"
@@ -367,12 +368,12 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    android:background="#ecd300"
+                    android:background="#bec4c0"
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="Late"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#25422d" />
 
                 <TextView
                     android:id="@+id/DANo"
@@ -380,12 +381,12 @@
                     android:layout_height="match_parent"
                     android:layout_margin="1dp"
                     android:layout_weight="1"
-                    android:background="#ff0600"
+                    android:background="#bec4c0"
                     android:gravity="center_vertical"
                     android:padding="2dp"
                     android:text="No"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#25422d" />
             </LinearLayout>
 
             <LinearLayout
@@ -503,6 +504,7 @@
                 android:ems="10"
                 android:gravity="center|clip_vertical"
                 android:inputType="number"
+                android:paddingTop="30dp"
                 android:text="Book Reading in Mins " />
 
         </LinearLayout>
