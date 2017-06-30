@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="round_button">Round Button</string>
+    <string name="sb">SB</string>
+    <string name="late">Late</string>
+    <string name="ma">MA</string>
+    <string name="yes">Yes</string>
+    <string name="book_reading_in_mins">Book Reading in Mins</string>
+    <string name="_2017">2017</string>
+</resources>

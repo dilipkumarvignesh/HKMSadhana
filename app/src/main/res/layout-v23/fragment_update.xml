@@ -24,7 +24,8 @@
             android:textAlignment="center"
             android:textAppearance="@android:style/TextAppearance.Material.Large"
             android:textSize="36sp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -42,7 +43,8 @@
                 android:textAlignment="center"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText,NestedWeights" />
 
             <TextView
                 android:id="@+id/mm"
@@ -54,7 +56,8 @@
                 android:textAlignment="center"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textSize="30sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:id="@+id/yyyy"
@@ -62,7 +65,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:fontFamily="serif-monospace"
-                android:text="2017"
+                android:text="@string/_2017"
                 android:textAlignment="center"
                 android:textAppearance="@android:style/TextAppearance.Material.Medium"
                 android:textSize="30sp"
@@ -86,7 +89,7 @@
             android:contextClickable="true"
             android:cursorVisible="false"
             android:elevation="3dp"
-            android:text="MA"
+            android:text="@string/ma"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:visibility="visible"
             tools:ignore="TextViewEdits" />
@@ -104,7 +107,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                tools:ignore="NestedWeights">
 
                 <TextView
                     android:id="@+id/MAYes"
@@ -117,7 +121,8 @@
                     android:padding="2dp"
                     android:text="Yes"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#fff"
+                    tools:ignore="HardcodedText" />
 
                 <TextView
                     android:id="@+id/MALate"
@@ -224,7 +229,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal"
-                android:paddingTop="10dp">
+                android:paddingTop="10dp"
+                tools:ignore="NestedWeights">
 
                 <TextView
                     android:id="@+id/SBYes"
@@ -263,7 +269,8 @@
                     android:padding="2dp"
                     android:text="No"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#fff"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
             <LinearLayout
@@ -330,7 +337,8 @@
             android:layout_height="match_parent"
             android:layout_weight="3"
             android:text="DA"
-            android:visibility="visible" />
+            android:visibility="visible"
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:id="@+id/DAResponseLayout"
@@ -345,7 +353,8 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:orientation="horizontal"
-                android:paddingTop="10dp">
+                android:paddingTop="10dp"
+                tools:ignore="NestedWeights">
 
                 <TextView
                     android:id="@+id/DAYes"
@@ -355,7 +364,7 @@
                     android:layout_weight="1"
                     android:background="#34a900"
                     android:gravity="center_vertical"
-                    android:text="Yes"
+                    android:text="@string/yes"
                     android:textAlignment="center"
                     android:textColor="#fff" />
 
@@ -368,7 +377,7 @@
                     android:background="#ecd300"
                     android:gravity="center_vertical"
                     android:padding="2dp"
-                    android:text="Late"
+                    android:text="@string/late"
                     android:textAlignment="center"
                     android:textColor="#fff" />
 
@@ -383,7 +392,8 @@
                     android:padding="2dp"
                     android:text="No"
                     android:textAlignment="center"
-                    android:textColor="#fff" />
+                    android:textColor="#fff"
+                    tools:ignore="HardcodedText" />
             </LinearLayout>
 
             <LinearLayout
@@ -447,20 +457,23 @@
             android:layout_width="99dp"
             android:layout_height="wrap_content"
             android:text="JP"
-            android:visibility="visible" />
+            android:visibility="visible"
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:id="@+id/JPResponseLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            tools:ignore="InefficientWeight">
 
             <Spinner
                 android:id="@+id/spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="0.06" />
+                android:layout_weight="0.06"
+                tools:ignore="InefficientWeight" />
 
         </LinearLayout>
 
@@ -478,11 +491,12 @@
             android:layout_width="101dp"
             android:layout_height="wrap_content"
             android:text="BR"
-            android:visibility="visible" />
+            android:visibility="visible"
+            tools:ignore="HardcodedText" />
 
         <LinearLayout
             android:id="@+id/BRResponseLayout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:orientation="vertical"
@@ -499,7 +513,8 @@
                 android:ems="10"
                 android:gravity="center|clip_vertical"
                 android:inputType="number"
-                android:text="Book Reading in Mins " />
+                android:text="@string/book_reading_in_mins"
+                tools:ignore="InefficientWeight" />
 
         </LinearLayout>
 
