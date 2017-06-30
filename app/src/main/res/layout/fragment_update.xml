@@ -208,6 +208,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="3"
+            android:background="@drawable/round_button"
             android:text="@string/sb"
             android:visibility="visible" />
 
@@ -329,6 +330,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="3"
+            android:background="@drawable/round_button"
             android:text="DA"
             android:visibility="visible" />
 
@@ -445,7 +447,8 @@
             android:id="@+id/JPButton"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="99dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/round_button"
             android:text="JP"
             android:visibility="visible" />
 
@@ -476,7 +479,8 @@
             android:id="@+id/BRButton"
             style="@style/Widget.AppCompat.Button"
             android:layout_width="101dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/round_button"
             android:text="BR"
             android:visibility="visible" />
 
@@ -507,21 +511,35 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_margin="25dp"
         android:gravity="bottom|center_horizontal|center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:weightSum="1">
 
         <ImageButton
             android:id="@+id/datePicker"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:background="#a3b71d"
             android:onClick=" showDatePickerDialog"
+            android:paddingBottom="1dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:scaleType="fitCenter"
             app:srcCompat="@android:drawable/ic_menu_my_calendar" />
 
         <ImageButton
             android:id="@+id/imageButton2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight=".5"
+            android:background="#a3b71d"
+            android:paddingBottom="1dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:scaleType="fitCenter"
             app:srcCompat="@android:drawable/ic_popup_sync" />
 
     </LinearLayout>

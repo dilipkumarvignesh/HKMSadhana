@@ -42,15 +42,14 @@
 
     <item>
         <shape android:shape="oval">
-            <size android:height="10dp"
-                android:width="10dp"></size>
+            <size android:height="25dp" android:width="250dp"></size>
 
             <gradient
                 android:endColor="#b3e2e1"
                 android:startColor="#17efe8"
-                android:angle="270" />
+                android:angle="90" />
             <stroke
-                android:width="3dp"
+                android:width="1dp"
                 android:color="#02ddd6" />
 
         </shape>
