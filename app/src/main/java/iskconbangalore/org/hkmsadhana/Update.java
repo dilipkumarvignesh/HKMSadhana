@@ -5,10 +5,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 
 /**
@@ -24,7 +33,7 @@ public class Update extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    TextView selectedDay, dd, mm, yyyy;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -78,11 +87,18 @@ public class Update extends Fragment {
                 showDatePickerDialog(view);
             }
         });
+        selectedDay = (TextView)view.findViewById(R.id.SelectedDay);
+        dd = (TextView)view.findViewById(R.id.dd);
+        mm = (TextView)view.findViewById(R.id.mm);
+        yyyy = (TextView)view.findViewById(R.id.yyyy);
         return view;
     }
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();
-        newFragment.show(getFragmentManager(), "datePicker");
+        newFragment.setTargetFragment(this,1);
+        FragmentTransaction transaction=getChildFragmentManager().beginTransaction();
+        newFragment.show(transaction, "datePicker");
+
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -123,4 +139,42 @@ public class Update extends Fragment {
         // TODO: Update argument type and name
         Object onFragmentInteraction(String Tag, Object Data);
     }
+    public void setDate(int year,int month,int day) throws ParseException {
+        Toast.makeText(getActivity(), "Date Picked  .",Toast.LENGTH_LONG).show();
+        Log.d("info","hello");
+        String Smonth,Sday,Syear;
+        Calendar now = Calendar.getInstance();
+//        int year = now.get(Calendar.YEAR);
+//        int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
+//        int day = now.get(Calendar.DAY_OF_MONTH);
+        Log.d("info","Date Values:"+month+","+day);
+        if(month < 10){
+
+            Smonth = "0" +(month+1);
+        }
+        else
+        {
+            Smonth = ""+(month+1);
+        }
+        if(day < 10){
+
+            Sday  = "0" + day ;
+        }
+        else
+        {
+            Sday = ""+day;
+        }
+        SimpleDateFormat newDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        Date MyDate = newDateFormat.parse(Sday+"/"+Smonth+"/"+year);
+        newDateFormat.applyPattern("EEEE");
+        String SelectedDay = newDateFormat.format(MyDate);
+        selectedDay.setText(SelectedDay);
+        newDateFormat.applyPattern("MMM");
+        String SelectedMonth = newDateFormat.format(MyDate);
+        mm.setText(SelectedMonth);
+        dd.setText(Sday);
+        yyyy.setText(""+year);
+      //  Log.d("info","SelectedDate:"+MyDatest);
+    }
+
 }

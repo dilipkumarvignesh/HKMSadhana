@@ -4,13 +4,14 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.widget.DatePicker;
 import android.widget.Toast;
-import java.util.Date;
 
 import java.util.Calendar;
+import java.util.Date;
 
-
+import static android.R.attr.fragment;
 
 
 /**
@@ -56,9 +57,15 @@ public class DatePickerFragment extends  DialogFragment
     public void onDateSet(DatePicker view, int year, int month, int day) {
         // Do something with the date chosen by the user
 
-        Toast.makeText(getActivity(), year+"."+month+"."+day+"Date Picked  .",Toast.LENGTH_LONG).show();
+
         ((MainActivity)getActivity()).getSelectedDate(year,month,day);
+//        Update fragment = (Update)getFragmentManager().findFragmentByTag("update");
+//        fragment.setDate();
+
+
     }
+
+
 //    /**
 //     * Use this factory method to create a new instance of
 //     * this fragment using the provided parameters.

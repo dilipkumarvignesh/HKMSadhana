@@ -33,11 +33,8 @@ import com.google.api.client.util.ExponentialBackOff;
 import com.google.api.services.sheets.v4.SheetsScopes;
 
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
@@ -135,12 +132,12 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         FragmentManager fragmentManager = getSupportFragmentManager();
 
-        fragmentManager.beginTransaction().replace(R.id.main_layout, new Update()).commit();
-        try {
-            getDate();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        fragmentManager.beginTransaction().replace(R.id.main_layout, new Update(),"update").commit();
+//        try {
+//            getDate();
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
@@ -227,16 +224,18 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         Fragment fragment = null;
         int id = item.getItemId();
-
+        String Tag="";
         if (id == R.id.nav_camera) {
             fragment = new Update();
-
+            Tag = "update";
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
             fragment = new Remainder();
+            Tag = "remainder";
 
         } else if (id == R.id.nav_slideshow) {
             fragment = new Summary();
+            Tag = "summary";
 
         } else if (id == R.id.nav_manage) {
             fragment = new Sync();
@@ -247,7 +246,7 @@ public class MainActivity extends AppCompatActivity
         }
         if (fragment != null) {
             FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.main_layout, fragment).commit();
+            fragmentManager.beginTransaction().replace(R.id.main_layout, fragment,Tag).commit();
 
 //            mDrawerList.setItemChecked(position, true);
 //            mDrawerList.setSelection(position);
@@ -270,7 +269,12 @@ public class MainActivity extends AppCompatActivity
         Gyear = year;
         Gmonth = month;
         Gday = day;
-
+        Update fragment = (Update)getSupportFragmentManager().findFragmentByTag("update");
+        try {
+            fragment.setDate(year,month,day);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
     }
 //    public void syncData()
@@ -441,19 +445,6 @@ public class MainActivity extends AppCompatActivity
         dialog.show();
     }
 
-    void getDate() throws ParseException {
-        Calendar now = Calendar.getInstance();
-        int year = now.get(Calendar.YEAR);
-        int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
-        int day = now.get(Calendar.DAY_OF_MONTH);
-        Log.d("info","Date Values:"+month+","+day);
 
-        SimpleDateFormat newDateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        Date MyDate = newDateFormat.parse("28/06/2017");
-        newDateFormat.applyPattern("EEEE d MMM yyyy");
-        String MyDatestr = newDateFormat.format(MyDate);
-        Log.d("info","SelectedDate:"+MyDatestr);
-
-    }
 
 }
