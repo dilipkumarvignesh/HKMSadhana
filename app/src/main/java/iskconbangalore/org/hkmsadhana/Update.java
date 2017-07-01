@@ -28,16 +28,17 @@ import java.util.Date;
  * Use the {@link Update#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Update extends Fragment {
+public class Update extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
     TextView selectedDay, dd, mm, yyyy;
+    String setFinalDate;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private DBHelper mydb ;
     private OnFragmentInteractionListener mListener;
 
     public Update() {
@@ -79,6 +80,29 @@ public class Update extends Fragment {
         View view =  inflater.inflate(R.layout.fragment_update, container, false);
         ImageButton fab = (ImageButton)view.findViewById(R.id.datePicker);
 
+        mydb = new DBHelper(getActivity());
+         TextView MaYes = (TextView) view.findViewById(R.id.MAYes);
+         MaYes.setOnClickListener(this);
+        TextView MaNo = (TextView) view.findViewById(R.id.MANo);
+        MaNo.setOnClickListener(this);
+        TextView MaLate = (TextView) view.findViewById(R.id.MALate);
+        MaLate.setOnClickListener(this);
+        TextView SBYes = (TextView) view.findViewById(R.id.SBYes);
+        SBYes.setOnClickListener(this);
+        TextView SBNo = (TextView) view.findViewById(R.id.SBNo);
+        SBNo.setOnClickListener(this);
+        TextView SbLate = (TextView) view.findViewById(R.id.SBLate);
+        SbLate.setOnClickListener(this);
+        TextView DaYes = (TextView) view.findViewById(R.id.DAYes);
+        DaYes.setOnClickListener(this);
+        TextView DaNo = (TextView) view.findViewById(R.id.DANo);
+        DaNo.setOnClickListener(this);
+        TextView DaLate = (TextView) view.findViewById(R.id.DALate);
+        DaLate.setOnClickListener(this);
+//        TextView MaYes = (TextView) view.findViewById(R.id.MAYes);
+//        MaYes.setOnClickListener(this);
+//        TextView MaYes = (TextView) view.findViewById(R.id.MAYes);
+//        MaYes.setOnClickListener(this);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -125,6 +149,24 @@ public class Update extends Fragment {
        // mListener = null;
     }
 
+    @Override
+    public void onClick(View v) {
+        Log.d("info","Button clicked:"+v.getId());
+        switch(v.getId()){
+            case R.id.MAYes:
+
+                mydb.updateSadhana(setFinalDate,"YES");
+                Log.d("info","MAYES CLick:"+setFinalDate);
+                break;
+            case R.id.MANo:
+                //DO something
+                break;
+            case R.id.MALate:
+                //DO something
+                break;
+        }
+    }
+
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated
@@ -166,6 +208,7 @@ public class Update extends Fragment {
         }
         SimpleDateFormat newDateFormat = new SimpleDateFormat("dd/MM/yyyy");
         Date MyDate = newDateFormat.parse(Sday+"/"+Smonth+"/"+year);
+        setFinalDate = year+"/"+Smonth+"/"+Sday;
         newDateFormat.applyPattern("EEEE");
         String SelectedDay = newDateFormat.format(MyDate);
         selectedDay.setText(SelectedDay);

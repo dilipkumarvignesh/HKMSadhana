@@ -98,6 +98,18 @@ public class DBHelper extends SQLiteOpenHelper {
          return QueryResult;
 
     }
+    public void updateSadhana(String Date,String MA)
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues cv = new ContentValues();
+        cv.put("StrDate",Date);
+        cv.put("MA",MA);
+        Log.d("info","Inside UpdateSadhana:"+Date+","+MA);
+        int upd = db.update("SadhanaUpdate", cv, "strDate=" + Date, null);
+        Log.d("info","UpdateStatus"+upd);
+
+
+    }
     public boolean insertSadhana (String date,Context context, String MA, String DA, String SB,Integer JPNo, Integer readMin) {
 
 
