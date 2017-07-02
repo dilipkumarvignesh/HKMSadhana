@@ -3,6 +3,7 @@ package iskconbangalore.org.hkmsadhana;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -72,6 +73,8 @@ public class HistoryFragment extends Fragment {
             ArrayList SadhanaUpdateList = mydb1.getSadhanaHistory();
 
             recyclerView.setAdapter(new MyHistoryRecyclerViewAdapter(SadhanaUpdateList, mListener));
+            recyclerView.addItemDecoration(new DividerItemDecoration(ContextCompat.getDrawable(context.getApplicationContext(),
+                    R.drawable.itemdecorator)));
         }
         return view;
     }

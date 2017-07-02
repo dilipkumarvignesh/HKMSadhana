@@ -49,6 +49,45 @@
             onCreate(db);
         }
 
+        public void initializeMonthlySadhana(String Smonth,int year)
+        {
+            int days;
+            String Sdate,Sday;
+            SQLiteDatabase db = this.getWritableDatabase();
+
+
+
+
+            if( Smonth == "04" || Smonth == "06" || Smonth == "09" || Smonth == "11")
+            {
+                days =30;
+            }
+            else if (Smonth =="02")
+            {
+                days = 28;
+            }
+            else
+            {
+                days =31;
+            }
+            for (int i=1;i<days;i++)
+            {
+                if(i < 10){
+
+                    Sday  = "0" + i ;
+                }
+                else
+                {
+                    Sday = ""+i;
+                }
+                Sdate = year+"/"+Smonth+"/"+Sday;
+                ContentValues contentValues = new ContentValues();
+                contentValues.put("StrDate", Sdate);
+                db.insert("SadhanaUpdate", null, contentValues);
+                Log.d("info","InsertedDate:"+Sdate);
+           }
+
+        }
         public Double[] getSummarydB(String year, String month)
         {    String query ="";
             Cursor res;
@@ -218,5 +257,6 @@
             Log.d("info","Sadhanadata:"+outer);
             return outer;
         }
+
 
     }

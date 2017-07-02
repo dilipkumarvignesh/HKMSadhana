@@ -243,6 +243,11 @@ public class Update extends Fragment implements View.OnClickListener {
         yyyy.setText(""+year);
         Log.d("info","SelectedDate:"+setFinalDate);
 
+        if ( Sday == "01")
+        {
+            mydb.initializeMonthlySadhana(Smonth,year);
+        }
+
         SadhanaUpdate obtainedData = mydb.getData(setFinalDate);
         MAStatus = obtainedData.MA;
         DAStatus = obtainedData.DA;
