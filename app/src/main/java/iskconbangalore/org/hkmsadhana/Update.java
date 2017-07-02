@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -62,7 +61,18 @@ public class Update extends Fragment implements View.OnClickListener {
         fragment.setArguments(args);
         return fragment;
     }
-
+    public void getTodayDate()
+    {
+        final Calendar calendar = Calendar.getInstance();
+        int yy = calendar.get(Calendar.YEAR);
+        int mm = calendar.get(Calendar.MONTH);
+        int dd = calendar.get(Calendar.DAY_OF_MONTH);
+        try {
+            setDate(yy,mm,dd);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +86,6 @@ public class Update extends Fragment implements View.OnClickListener {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View view =  inflater.inflate(R.layout.fragment_update, container, false);
         ImageButton fab = (ImageButton)view.findViewById(R.id.datePicker);
 
@@ -115,6 +124,7 @@ public class Update extends Fragment implements View.OnClickListener {
         dd = (TextView)view.findViewById(R.id.dd);
         mm = (TextView)view.findViewById(R.id.mm);
         yyyy = (TextView)view.findViewById(R.id.yyyy);
+        getTodayDate();
         return view;
     }
     public void showDatePickerDialog(View v) {
@@ -182,9 +192,9 @@ public class Update extends Fragment implements View.OnClickListener {
         Object onFragmentInteraction(String Tag, Object Data);
     }
     public void setDate(int year,int month,int day) throws ParseException {
-        Toast.makeText(getActivity(), "Date Picked  .",Toast.LENGTH_LONG).show();
+   //     Toast.makeText(getActivity(), "Date Picked  .",Toast.LENGTH_LONG).show();
         Log.d("info","hello");
-        String Smonth,Sday,Syear;
+        String Smonth,Sday;
         Calendar now = Calendar.getInstance();
 //        int year = now.get(Calendar.YEAR);
 //        int month = now.get(Calendar.MONTH) + 1; // Note: zero based!

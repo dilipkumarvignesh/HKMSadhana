@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static android.icu.text.Normalizer.NO;
+
 public class DBHelper extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "SadhanaTracker.db";
@@ -102,11 +104,16 @@ public class DBHelper extends SQLiteOpenHelper {
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues cv = new ContentValues();
-        cv.put("StrDate",Date);
-        cv.put("MA",MA);
+        String query = "UPDATE SadhanaUpdate"+
+                        " SET MA = '"+MA+"'"+
+                        " WHERE StrDate = '"+Date+"'";
+        Log.d("info","query:"+query);
+        db.rawQuery(query, null );
+//        cv.put("StrDate",Date);
+//        cv.put("MA",MA);
         Log.d("info","Inside UpdateSadhana:"+Date+","+MA);
-        int upd = db.update("SadhanaUpdate", cv, "strDate=" + Date, null);
-        Log.d("info","UpdateStatus"+upd);
+        //int upd = db.update("SadhanaUpdate", cv, "strDate=" + Date, null);
+     //   Log.d("info","UpdateStatus"+upd);
 
 
     }

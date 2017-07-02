@@ -21,6 +21,9 @@
             android:layout_height="match_parent"
             android:layout_weight="0.5"
             android:fontFamily="sans-serif-condensed"
+            android:textAppearance="@android:style/TextAppearance.Material.Large"
+            android:textAlignment="center"
+            android:gravity="center_vertical"
        />
 
         <LinearLayout
