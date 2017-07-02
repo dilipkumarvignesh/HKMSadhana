@@ -239,7 +239,10 @@ public class Update extends Fragment implements View.OnClickListener {
         mm.setText(SelectedMonth);
         dd.setText(Sday);
         yyyy.setText(""+year);
-      //  Log.d("info","SelectedDate:"+MyDatest);
+        Log.d("info","SelectedDate:"+setFinalDate);
+
+        SadhanaUpdate obtainedData = mydb.getData(setFinalDate);
+
     }
 
 }

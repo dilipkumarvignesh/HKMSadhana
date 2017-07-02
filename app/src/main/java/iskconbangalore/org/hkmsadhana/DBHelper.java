@@ -137,10 +137,30 @@
             return true;
         }
 
-        public Cursor getData(int id) {
+        public SadhanaUpdate getData(String Date) {
             SQLiteDatabase db = this.getReadableDatabase();
-            Cursor res =  db.rawQuery( "select * from Sadhana where id="+id+"", null );
-            return res;
+            String query = "select * from SadhanaUpdate where StrDate = ?";
+            Log.d("info","QueryRecordData:"+query);
+            Cursor res =  db.rawQuery(query, new String[]{Date} );
+            String date, MA, JapaRounds, DA,SB, RMin ;
+              if(res.getCount() > 0) {
+                res.moveToFirst();
+                  date= res.getString(res.getColumnIndex(CONTACTS_COLUMN_DATE));
+                  MA= res.getString(res.getColumnIndex(CONTACTS_COLUMN_MA));
+                  DA=res.getString(res.getColumnIndex(CONTACTS_COLUMN_DA));
+                  SB=res.getString(res.getColumnIndex(CONTACTS_COLUMN_SB));
+                  Integer Japa = res.getInt(res.getColumnIndex(CONTACTS_COLUMN_JAPA));
+                  JapaRounds = Japa.toString();
+                  Integer RM = res.getInt(res.getColumnIndex(CONTACTS_COLUMN_RM));
+                  RMin=RM.toString();
+                  SadhanaUpdate obj = new SadhanaUpdate(date,MA,DA,SB,JapaRounds,RMin);
+                  return obj;
+            }
+            else
+              {
+                  Log.d("info","No Records fetched");
+              }
+              return null;
         }
 
         public int numberOfRows(){
