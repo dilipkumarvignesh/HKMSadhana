@@ -164,15 +164,31 @@ public class Update extends Fragment implements View.OnClickListener {
         Log.d("info","Button clicked:"+v.getId());
         switch(v.getId()){
             case R.id.MAYes:
-
-                mydb.updateSadhana(setFinalDate,"YES");
-                Log.d("info","MAYES CLick:"+setFinalDate);
+                mydb.updateSadhana(setFinalDate,"YES","MA");
                 break;
             case R.id.MANo:
-                //DO something
+                mydb.updateSadhana(setFinalDate,"NO","MA");
                 break;
             case R.id.MALate:
-                //DO something
+                mydb.updateSadhana(setFinalDate,"LATE","MA");
+                break;
+            case R.id.DAYes:
+                mydb.updateSadhana(setFinalDate,"YES","DA");
+                break;
+            case R.id.DANo:
+                mydb.updateSadhana(setFinalDate,"NO","DA");
+                break;
+            case R.id.DALate:
+                mydb.updateSadhana(setFinalDate,"LATE","DA");
+                break;
+            case R.id.SBYes:
+                mydb.updateSadhana(setFinalDate,"YES","SB");
+                break;
+            case R.id.SBNo:
+                mydb.updateSadhana(setFinalDate,"NO","SB");
+                break;
+            case R.id.SBLate:
+                mydb.updateSadhana(setFinalDate,"LATE","SB");
                 break;
         }
     }
@@ -195,11 +211,7 @@ public class Update extends Fragment implements View.OnClickListener {
    //     Toast.makeText(getActivity(), "Date Picked  .",Toast.LENGTH_LONG).show();
         Log.d("info","hello");
         String Smonth,Sday;
-        Calendar now = Calendar.getInstance();
-//        int year = now.get(Calendar.YEAR);
-//        int month = now.get(Calendar.MONTH) + 1; // Note: zero based!
-//        int day = now.get(Calendar.DAY_OF_MONTH);
-        Log.d("info","Date Values:"+month+","+day);
+
         if(month < 10){
 
             Smonth = "0" +(month+1);

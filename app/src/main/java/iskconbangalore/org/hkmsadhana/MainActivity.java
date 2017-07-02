@@ -147,7 +147,7 @@ public class MainActivity extends AppCompatActivity
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
         Log.d("info","GCredentialsMain="+mCredential);
-        insertTodaySadhana();
+//        insertTodaySadhana();
         SharedPreferences sheetId = this.getSharedPreferences("GoogleSheetId", MODE_PRIVATE);
         String sheetIdValue = sheetId.getString("gSheetId", "");
         updateSheetId= sheetIdValue;
@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.LENGTH_LONG).show();
         long date = System.currentTimeMillis() / 1000L;
         Log.d("info","date="+date);
-      //  mydb.insertSadhana("2017/07/02",this,"YES","YES","NO",16,50);
+        mydb.insertSadhana("2017/07/03",this,"YES","YES","NO",16,50);
 
     }
     @Override
