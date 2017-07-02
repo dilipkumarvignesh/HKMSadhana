@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import iskconbangalore.org.hkmsadhana.HistoryFragment.OnListFragmentInteractionListener;
 import iskconbangalore.org.hkmsadhana.dummy.DummyContent.DummyItem;
@@ -18,10 +18,10 @@ import iskconbangalore.org.hkmsadhana.dummy.DummyContent.DummyItem;
  */
 public class MyHistoryRecyclerViewAdapter extends RecyclerView.Adapter<MyHistoryRecyclerViewAdapter.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private final ArrayList<SadhanaUpdate> mValues;
     private final OnListFragmentInteractionListener mListener;
 
-    public MyHistoryRecyclerViewAdapter(List<DummyItem> items, OnListFragmentInteractionListener listener) {
+    public MyHistoryRecyclerViewAdapter(ArrayList<SadhanaUpdate> items, OnListFragmentInteractionListener listener) {
         mValues = items;
         mListener = listener;
     }
@@ -35,9 +35,13 @@ public class MyHistoryRecyclerViewAdapter extends RecyclerView.Adapter<MyHistory
 
     @Override
     public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+     //   holder.mItem = mValues.get(position);
+       // holder.mIdView.setText(mValues.get(position).id);
+        holder.mDateView.setText(mValues.get(position).updateDate);
+        holder.mMAView.setText(mValues.get(position).MA);
+        holder.mDAView.setText(mValues.get(position).DA);
+        holder.mSBView.setText(mValues.get(position).SB);
+        holder.mJPView.setText(mValues.get(position).Japa);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,20 +62,27 @@ public class MyHistoryRecyclerViewAdapter extends RecyclerView.Adapter<MyHistory
 
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
+        public final TextView mDateView;
+        public final TextView mMAView;
+        public final TextView mDAView;
+        public final TextView mSBView;
+        public final TextView mJPView;
         public DummyItem mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.id);
-            mContentView = (TextView) view.findViewById(R.id.content);
+           // mIdView = (TextView) view.findViewById(R.id.id);
+            mDateView = (TextView) view.findViewById(R.id.dateItem);
+            mMAView = (TextView) view.findViewById(R.id.MAItem);
+            mDAView = (TextView) view.findViewById(R.id.DAItem);
+            mSBView = (TextView) view.findViewById(R.id.SBItem);
+            mJPView = (TextView) view.findViewById(R.id.JPItem);
         }
 
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
-    }
+      //  @Override
+//        public String toString() {
+//            return super.toString() + " '" + mContentView.getText() + "'";
+//        }
+}
 }

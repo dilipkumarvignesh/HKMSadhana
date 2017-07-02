@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import iskconbangalore.org.hkmsadhana.dummy.DummyContent;
+import java.util.ArrayList;
 
 /**
  * A fragment representing a list of Items.
@@ -69,8 +69,9 @@ public class HistoryFragment extends Fragment {
             }
             DBHelper mydb1 = new DBHelper(getActivity());
             Log.d("info","GetHistory"+mydb1.getSadhanaHistory());
+            ArrayList SadhanaUpdateList = mydb1.getSadhanaHistory();
 
-            recyclerView.setAdapter(new MyHistoryRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            recyclerView.setAdapter(new MyHistoryRecyclerViewAdapter(SadhanaUpdateList, mListener));
         }
         return view;
     }
