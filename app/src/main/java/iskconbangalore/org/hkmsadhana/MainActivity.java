@@ -225,20 +225,20 @@ public class MainActivity extends AppCompatActivity
         Fragment fragment = null;
         int id = item.getItemId();
         String Tag="";
-        if (id == R.id.nav_camera) {
+        if (id == R.id.Update) {
             fragment = new Update();
             Tag = "update";
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-            fragment = new Remainder();
-            Tag = "remainder";
-
-        } else if (id == R.id.nav_slideshow) {
+        } else if (id == R.id.Summary) {
             fragment = new Summary();
             Tag = "summary";
 
-        } else if (id == R.id.nav_manage) {
-            fragment = new Sync();
+        } else if (id == R.id.History) {
+            fragment = new HistoryFragment();
+            Tag = "history";
+
+        } else if (id == R.id.Remainder) {
+            fragment = new Remainder();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

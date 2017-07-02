@@ -30,13 +30,15 @@ import java.util.Date;
 public class Update extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+//    private static final String ARG_PARAM1 = "param1";
+//    private static final String ARG_PARAM2 = "param2";
     TextView selectedDay, dd, mm, yyyy;
     String setFinalDate;
+    String MAStatus,DAStatus,SBStatus,JapaStatus;
+
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+//    private String mParam1;
+//    private String mParam2;
     private DBHelper mydb ;
     private OnFragmentInteractionListener mListener;
 
@@ -55,10 +57,10 @@ public class Update extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types and number of parameters
     public static Update newInstance(String param1, String param2) {
         Update fragment = new Update();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
+//        Bundle args = new Bundle();
+//        args.putString(ARG_PARAM1, param1);
+//        args.putString(ARG_PARAM2, param2);
+//        fragment.setArguments(args);
         return fragment;
     }
     public void getTodayDate()
@@ -76,10 +78,10 @@ public class Update extends Fragment implements View.OnClickListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+//        if (getArguments() != null) {
+//            mParam1 = getArguments().getString(ARG_PARAM1);
+//            mParam2 = getArguments().getString(ARG_PARAM2);
+//        }
     }
 
     @Override
@@ -242,6 +244,10 @@ public class Update extends Fragment implements View.OnClickListener {
         Log.d("info","SelectedDate:"+setFinalDate);
 
         SadhanaUpdate obtainedData = mydb.getData(setFinalDate);
+        MAStatus = obtainedData.MA;
+        DAStatus = obtainedData.DA;
+        SBStatus = obtainedData.SB;
+        JapaStatus = obtainedData.Japa;
 
     }
 

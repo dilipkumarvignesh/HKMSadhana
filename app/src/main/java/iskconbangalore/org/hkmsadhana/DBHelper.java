@@ -218,19 +218,5 @@
             Log.d("info","Sadhanadata:"+outer);
             return outer;
         }
-    //    public ArrayList<SadhanaUpdate> getSadhanaHistory() {
-    //        ArrayList<SadhanaUpdate> array_list = new ArrayList<SadhanaUpdate>();
-    //
-    //        //hp = new HashMap();
-    //        SQLiteDatabase db = this.getReadableDatabase();
-    //        Cursor res =  db.rawQuery( "select * from SadhanaUpdate", null );
-    //        res.moveToFirst();
-    //
-    //        while(res.isAfterLast() == false){
-    //            array_list.add((SadhanaUpdate) res);
-    //            res.moveToNext();
-    //        }
-    //
-    //        return array_list;
-    //    }
+
     }
