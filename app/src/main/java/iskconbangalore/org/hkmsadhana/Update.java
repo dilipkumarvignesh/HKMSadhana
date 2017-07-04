@@ -10,8 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ToggleButton;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -34,6 +37,9 @@ public class Update extends Fragment implements View.OnClickListener {
 //    private static final String ARG_PARAM2 = "param2";
     TextView selectedDay, dd, mm, yyyy;
     String setFinalDate;
+    ToggleButton sec1,sec,sec2;
+    LinearLayout l1,l2,l1a,l1b,l2a,l2b;
+    TextView t1;
     String MAStatus,DAStatus,SBStatus,JapaStatus;
 
     // TODO: Rename and change types of parameters
@@ -82,8 +88,64 @@ public class Update extends Fragment implements View.OnClickListener {
 //            mParam1 = getArguments().getString(ARG_PARAM1);
 //            mParam2 = getArguments().getString(ARG_PARAM2);
 //        }
+
     }
 
+    public void UIInit()
+    {
+
+
+
+
+
+
+        sec.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // The toggle is enabled
+                    l1.setVisibility(View.GONE);
+                    l2.setVisibility(View.VISIBLE);
+                } else {
+                    // The toggle is disabled
+                    l1.setVisibility(View.VISIBLE);
+                    l2.setVisibility(View.GONE);
+
+                }
+            }
+        });
+
+        sec1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // The toggle is enabled
+                    l1a.setVisibility(View.GONE);
+                    l1b.setVisibility(View.VISIBLE);
+                } else {
+                    // The toggle is disabled
+                    l1a.setVisibility(View.VISIBLE);
+                    l1b.setVisibility(View.GONE);
+
+                }
+            }
+        });
+
+        sec2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    // The toggle is enabled
+                    l2a.setVisibility(View.GONE);
+                    l2b.setVisibility(View.VISIBLE);
+                } else {
+                    // The toggle is disabled
+                    l2a.setVisibility(View.VISIBLE);
+                    l2b.setVisibility(View.GONE);
+
+                }
+            }
+        });
+
+
+    }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -110,6 +172,19 @@ public class Update extends Fragment implements View.OnClickListener {
         DaNo.setOnClickListener(this);
         TextView DaLate = (TextView) view.findViewById(R.id.DALate);
         DaLate.setOnClickListener(this);
+        sec = (ToggleButton)view.findViewById(R.id.btnTglSec);
+        l1 = (LinearLayout)view.findViewById(R.id.lotForMa);
+        l2 = (LinearLayout)view.findViewById(R.id.lotForMaRe);
+
+        sec1 = (ToggleButton)view.findViewById(R.id.btnTglSec1);
+        l1a = (LinearLayout)view.findViewById(R.id.lotForMa1);
+        l1b = (LinearLayout)view.findViewById(R.id.lotForMaRe1);
+
+        sec2 = (ToggleButton)view.findViewById(R.id.btnTglSec2);
+        l2a = (LinearLayout)view.findViewById(R.id.lotForMa2);
+        l2b = (LinearLayout)view.findViewById(R.id.lotForMaRe2);
+
+        UIInit();
 //        TextView MaYes = (TextView) view.findViewById(R.id.MAYes);
 //        MaYes.setOnClickListener(this);
 //        TextView MaYes = (TextView) view.findViewById(R.id.MAYes);
@@ -248,11 +323,12 @@ public class Update extends Fragment implements View.OnClickListener {
             mydb.initializeMonthlySadhana(Smonth,year);
         }
 
-        SadhanaUpdate obtainedData = mydb.getData(setFinalDate);
-        MAStatus = obtainedData.MA;
-        DAStatus = obtainedData.DA;
-        SBStatus = obtainedData.SB;
-        JapaStatus = obtainedData.Japa;
+
+//        SadhanaUpdate obtainedData = mydb.getData(setFinalDate);
+//        MAStatus = obtainedData.MA;
+//        DAStatus = obtainedData.DA;
+//        SBStatus = obtainedData.SB;
+//        JapaStatus = obtainedData.Japa;
 
     }
 

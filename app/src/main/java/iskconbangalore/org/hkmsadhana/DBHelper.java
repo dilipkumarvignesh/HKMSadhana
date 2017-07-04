@@ -18,7 +18,7 @@
     public class DBHelper extends SQLiteOpenHelper {
 
         public static final String DATABASE_NAME = "SadhanaTracker.db";
-        public static final String CONTACTS_TABLE_NAME = "SadhanaUpdate";
+        public static final String CONTACTS_TABLE_NAME = "SadhanaUpdate1";
         public static final String CONTACTS_COLUMN_ID = "id";
         public static final String CONTACTS_COLUMN_DATE = "StrDate";
         public static final String CONTACTS_COLUMN_MA= "MA";
@@ -37,7 +37,7 @@
         public void onCreate(SQLiteDatabase db) {
             // TODO Auto-generated method stub
             db.execSQL(
-                    "create table SadhanaUpdate " +
+                    "create table SadhanaUpdate1 " +
                             "(StrDate text primary key, MA text, DA text, SB text,JapaNo integer,readingMinutes integer);"
             );
         }
@@ -45,7 +45,7 @@
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             // TODO Auto-generated method stub
-            db.execSQL("DROP TABLE IF EXISTS SadhanaUpdate");
+            db.execSQL("DROP TABLE IF EXISTS SadhanaUpdate1");
             onCreate(db);
         }
 
@@ -83,7 +83,13 @@
                 Sdate = year+"/"+Smonth+"/"+Sday;
                 ContentValues contentValues = new ContentValues();
                 contentValues.put("StrDate", Sdate);
-                db.insert("SadhanaUpdate", null, contentValues);
+                contentValues.put("MA", "NA");
+                contentValues.put("DA", "NA");
+                contentValues.put("SB", "NA");
+                contentValues.put("JapaNo",0);
+                contentValues.put("readingMinutes", 0);
+
+                db.insert("SadhanaUpdate1", null, contentValues);
                 Log.d("info","InsertedDate:"+Sdate);
            }
 
@@ -106,7 +112,7 @@
                     "sum(case when SB = 'SICK' OR SB = 'AS' OR SB = 'OS' then 1 else 0 end) SBEXCUSE,"+
                     "sum(readingMinutes) read,"+
                     "avg(japaNo) japa "+
-                    "from sadhanaUpdate  where StrDate between  '"+StartDate+"' and '"+EndDate+"'";
+                    "from sadhanaUpdate1  where StrDate between  '"+StartDate+"' and '"+EndDate+"'";
             Log.d("info","Query Data="+query);
            // Log.d("info","Query Data="+StartDate+" , "+EndDate);
     //        query = "select count(*) from SadhanaUpdate where StrDate between  '"+StartDate+"' and '"+EndDate+"'";
@@ -149,7 +155,7 @@
              cv.put("DA",Status);
             else if (Field == "SB")
                 cv.put("SB",Status);
-            int upd = db.update("SadhanaUpdate", cv, "StrDate = ?", new String[] {Date});
+            int upd = db.update("SadhanaUpdate1", cv, "StrDate = ?", new String[] {Date});
             Log.d("info","SelectedDate:"+Date);
             Log.d("info","No Of Rows affected:"+upd);
 
@@ -168,7 +174,7 @@
             contentValues.put("JapaNO",JPNo);
             contentValues.put("readingMinutes",readMin);
 
-            long rowInserted = db.insert("SadhanaUpdate", null, contentValues);
+            long rowInserted = db.insert("SadhanaUpdate1", null, contentValues);
             if(rowInserted != -1)
                 Toast.makeText(context, "New row added, row id: " + rowInserted, Toast.LENGTH_SHORT).show();
             else
@@ -178,7 +184,7 @@
 
         public SadhanaUpdate getData(String Date) {
             SQLiteDatabase db = this.getReadableDatabase();
-            String query = "select * from SadhanaUpdate where StrDate = ?";
+            String query = "select * from SadhanaUpdate1 where StrDate = ?";
             Log.d("info","QueryRecordData:"+query);
             Cursor res =  db.rawQuery(query, new String[]{Date} );
             String date, MA, JapaRounds, DA,SB, RMin ;
@@ -216,13 +222,13 @@
     //        contentValues.put("email", email);
     //        contentValues.put("street", street);
     //        contentValues.put("place", place);
-            db.update("SadhanaUpdate", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
+            db.update("SadhanaUpdate1", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
             return true;
         }
 
         public Integer deleteContact (Integer id) {
             SQLiteDatabase db = this.getWritableDatabase();
-            return db.delete("SadhanaUpdate",
+            return db.delete("SadhanaUpdate1",
                     "id = ? ",
                     new String[] { Integer.toString(id) });
         }
@@ -234,7 +240,7 @@
 
             //hp = new HashMap();
             SQLiteDatabase db = this.getReadableDatabase();
-            Cursor res =  db.rawQuery( "select * from SadhanaUpdate", null );
+            Cursor res =  db.rawQuery( "select * from SadhanaUpdate1", null );
             res.moveToFirst();
             int counter = 0;
             Log.d("info","Inside Sadhanahistory:"+res);
