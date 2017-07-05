@@ -96,7 +96,9 @@ public class Update extends Fragment implements View.OnClickListener {
 
 
 
-
+//        l1.setVisibility(View.VISIBLE);
+//        l1a.setVisibility(View.VISIBLE);
+//        l1b.setVisibility(View.VISIBLE);
 
 
         sec.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {

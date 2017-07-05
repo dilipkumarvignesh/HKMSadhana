@@ -78,425 +78,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <!--<LinearLayout-->
-        <!--android:id="@+id/PunchLayout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:layout_weight="1"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/BRResponseLayout"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:orientation="vertical"-->
-            <!--android:weightSum="1">-->
-
-        <!--</LinearLayout>-->
-
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-        <!--android:id="@+id/MALayout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="60dp"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<Button-->
-            <!--android:id="@+id/MAButton"-->
-            <!--style="@android:style/Widget.Material.Button"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="3"-->
-            <!--android:background="@drawable/round_button"-->
-            <!--android:contextClickable="true"-->
-            <!--android:cursorVisible="false"-->
-            <!--android:elevation="3dp"-->
-            <!--android:text="MA"-->
-            <!--android:textAppearance="@style/TextAppearance.AppCompat"-->
-            <!--android:visibility="visible"-->
-            <!--tools:ignore="TextViewEdits" />-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/MAResponseLayout"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:orientation="vertical"-->
-            <!--android:paddingTop="10dp">-->
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/MAAttendedLayout"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="0"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:paddingTop="10dp">-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/MAYes"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_margin="1dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="#bec4c0"-->
-                    <!--android:clickable="true"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:padding="2dp"-->
-                    <!--android:text="Yes"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textColor="#25422d" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/MALate"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_margin="1dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="#bec4c0"-->
-                    <!--android:clickable="true"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:padding="2dp"-->
-                    <!--android:text="Late"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textColor="#25422d" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/MANo"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_margin="1dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="#bec4c0"-->
-                    <!--android:clickable="true"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:padding="2dp"-->
-                    <!--android:text="No"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textColor="#25422d" />-->
-            <!--</LinearLayout>-->
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/MAExcuseLayout"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="0"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:visibility="visible">-->
-
-
-                <!--<TextView-->
-                    <!--android:id="@+id/MAsick"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:text="sick"-->
-                    <!--android:textAlignment="center" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/MAos"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:text="os"-->
-                    <!--android:textAlignment="center" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/MAas"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:text="as"-->
-                    <!--android:textAlignment="center" />-->
-            <!--</LinearLayout>-->
-
-        <!--</LinearLayout>-->
-
-
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-        <!--android:id="@+id/SBLayout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="60dp"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<Button-->
-            <!--android:id="@+id/SBButton"-->
-            <!--style="@style/Widget.AppCompat.Button"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="3"-->
-            <!--android:background="@drawable/round_button"-->
-            <!--android:text="@string/sb"-->
-            <!--android:visibility="visible" />-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/SBResponseLayout"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/SBAttendedLayout"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="1"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:paddingTop="10dp">-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/SBYes"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_margin="1dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="#bec4c0"-->
-                    <!--android:clickable="true"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:padding="2dp"-->
-                    <!--android:text="Yes"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textColor="#25422d" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/SBLate"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_margin="1dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="#bec4c0"-->
-                    <!--android:clickable="true"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:padding="2dp"-->
-                    <!--android:text="Late"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textColor="#25422d" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/SBNo"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_margin="1dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="#bec4c0"-->
-                    <!--android:clickable="true"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:padding="2dp"-->
-                    <!--android:text="No"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textColor="#25422d" />-->
-            <!--</LinearLayout>-->
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/SBExcuseHider"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="1"-->
-                <!--android:orientation="vertical">-->
-
-                <!--<LinearLayout-->
-                    <!--android:id="@+id/SBExcuseLayout"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:visibility="invisible">-->
-
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/SBsick"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:text="sick"-->
-                        <!--android:textAlignment="center" />-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/SBos"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:text="os"-->
-                        <!--android:textAlignment="center" />-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/SBas"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:text="as"-->
-                        <!--android:textAlignment="center" />-->
-                <!--</LinearLayout>-->
-            <!--</LinearLayout>-->
-
-
-        <!--</LinearLayout>-->
-
-
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-        <!--android:id="@+id/DALayout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="60dp"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<Button-->
-            <!--android:id="@+id/DAButton"-->
-            <!--style="@style/Widget.AppCompat.Button"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="3"-->
-            <!--android:background="@drawable/round_button"-->
-            <!--android:text="DA"-->
-            <!--android:visibility="visible" />-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/DAResponseLayout"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/DAAttendedLayout"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="match_parent"-->
-                <!--android:layout_weight="1"-->
-                <!--android:orientation="horizontal"-->
-                <!--android:paddingTop="10dp">-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/DAYes"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_margin="1dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="#bec4c0"-->
-                    <!--android:clickable="true"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:text="Yes"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textColor="#25422d" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/DALate"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_margin="1dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="#bec4c0"-->
-                    <!--android:clickable="true"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:padding="2dp"-->
-                    <!--android:text="Late"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textColor="#25422d" />-->
-
-                <!--<TextView-->
-                    <!--android:id="@+id/DANo"-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_margin="1dp"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:background="#bec4c0"-->
-                    <!--android:clickable="true"-->
-                    <!--android:gravity="center_vertical"-->
-                    <!--android:padding="2dp"-->
-                    <!--android:text="No"-->
-                    <!--android:textAlignment="center"-->
-                    <!--android:textColor="#25422d" />-->
-            <!--</LinearLayout>-->
-
-            <!--<LinearLayout-->
-                <!--android:id="@+id/DAExcuseHider"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="1"-->
-                <!--android:orientation="vertical">-->
-
-                <!--<LinearLayout-->
-                    <!--android:id="@+id/DAExcuseLayout"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent"-->
-                    <!--android:layout_weight="1"-->
-                    <!--android:orientation="horizontal"-->
-                    <!--android:visibility="invisible">-->
-
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/DAsick"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:text="sick"-->
-                        <!--android:textAlignment="center" />-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/DAos"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:text="os"-->
-                        <!--android:textAlignment="center" />-->
-
-                    <!--<TextView-->
-                        <!--android:id="@+id/DAas"-->
-                        <!--android:layout_width="wrap_content"-->
-                        <!--android:layout_height="match_parent"-->
-                        <!--android:layout_weight="1"-->
-                        <!--android:gravity="center_vertical"-->
-                        <!--android:text="as"-->
-                        <!--android:textAlignment="center" />-->
-                <!--</LinearLayout>-->
-            <!--</LinearLayout>-->
-
-        <!--</LinearLayout>-->
-
-    <!--</LinearLayout>-->
-
-    <!--<LinearLayout-->
-        <!--android:id="@+id/JPLayout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="60dp"-->
-        <!--android:orientation="horizontal">-->
-
-        <!--<Button-->
-            <!--android:id="@+id/JPButton"-->
-            <!--style="@style/Widget.AppCompat.Button"-->
-            <!--android:layout_width="99dp"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:background="@drawable/round_button"-->
-            <!--android:text="JP"-->
-            <!--android:visibility="visible" />-->
-
-        <!--<LinearLayout-->
-            <!--android:id="@+id/JPResponseLayout"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_weight="1"-->
-            <!--android:orientation="vertical">-->
-
-            <!--<Spinner-->
-                <!--android:id="@+id/spinner"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:layout_weight="0.06" />-->
-
-        <!--</LinearLayout>-->
-
-    <!--</LinearLayout>-->
 
 
     <LinearLayout
@@ -522,11 +103,10 @@
                 android:id="@+id/btnTglSec"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ToggleButton"
-                android:textOn="attendance"
-                android:textOff="Reason"
                 android:layout_marginLeft="100dp"
-                />
+                android:text="ToggleButton"
+                android:textOff="Attendance"
+                android:textOn="Reason" />
         </LinearLayout>
 
         <RelativeLayout
@@ -566,33 +146,34 @@
 
 
             <LinearLayout
-                android:layout_width="match_parent"
                 android:id="@+id/lotForMaRe"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="sick"
                     android:id="@+id/MAsick"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
 
-                    android:layout_height="50dp"/>
+                    android:text="sick" />
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="os"
                     android:id="@+id/MAos"
-
-                    android:layout_height="50dp"/>
-                <Button
                     android:layout_width="0dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:text="as"
+
+                    android:text="os" />
+
+                <Button
                     android:id="@+id/MAas"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
 
-                    android:layout_height="50dp"/>
-
+                    android:text="as" />
 
 
             </LinearLayout>
@@ -667,11 +248,10 @@
                 android:id="@+id/btnTglSec2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ToggleButton"
-                android:textOn="attendance"
-                android:textOff="Reason"
                 android:layout_marginLeft="100dp"
-                />
+                android:text="ToggleButton"
+                android:textOff="Attendance"
+                android:textOn="Reason" />
         </LinearLayout>
 
         <RelativeLayout
@@ -712,33 +292,34 @@
 
 
             <LinearLayout
-                android:layout_width="match_parent"
                 android:id="@+id/lotForMaRe2"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="sick"
                     android:id="@+id/DAsick"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
 
-                    android:layout_height="50dp"/>
+                    android:text="sick" />
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="os"
                     android:id="@+id/DAos"
-
-                    android:layout_height="50dp"/>
-                <Button
                     android:layout_width="0dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:text="as"
+
+                    android:text="os" />
+
+                <Button
                     android:id="@+id/DAas"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
 
-                    android:layout_height="50dp"/>
-
+                    android:text="as" />
 
 
             </LinearLayout>
@@ -775,11 +356,10 @@
                 android:id="@+id/btnTglSec1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="ToggleButton"
-                android:textOn="attendance"
-                android:textOff="Reason"
                 android:layout_marginLeft="100dp"
-                />
+                android:text="ToggleButton"
+                android:textOff="Attendance"
+                android:textOn="Reason" />
         </LinearLayout>
 
         <RelativeLayout
@@ -819,30 +399,31 @@
 
 
             <LinearLayout
-                android:layout_width="match_parent"
                 android:id="@+id/lotForMaRe1"
-                android:layout_height="wrap_content">
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone">
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="sick"
                     android:id="@+id/SBsick"
-                    android:layout_height="50dp"/>
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="sick" />
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="os"
                     android:id="@+id/SBos"
-                    android:layout_height="50dp"/>
-                <Button
                     android:layout_width="0dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:text="as"
-                    android:id="@+id/SBas"
-                    android:layout_height="50dp"/>
+                    android:text="os" />
 
+                <Button
+                    android:id="@+id/SBas"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="as" />
 
 
             </LinearLayout>
