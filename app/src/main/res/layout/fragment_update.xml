@@ -79,12 +79,12 @@
     </LinearLayout>
 
 
-
     <LinearLayout
+        android:id="@+id/MA_MAIN"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -97,7 +97,7 @@
                 android:layout_height="wrap_content"
                 android:text="MA"
                 android:textSize="25dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <ToggleButton
                 android:id="@+id/btnTglSec"
@@ -114,32 +114,32 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="match_parent"
                 android:id="@+id/lotForMa"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="yes"
                     android:id="@+id/MAYes"
-                    android:layout_height="50dp"/>
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="yes" />
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="late"
                     android:id="@+id/MALate"
-
-                    android:layout_height="50dp"/>
-                <Button
                     android:layout_width="0dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:text="no"
+
+                    android:text="late" />
+
+                <Button
                     android:id="@+id/MANo"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
 
-                    android:layout_height="50dp"/>
-
+                    android:text="no" />
 
 
             </LinearLayout>
@@ -187,10 +187,11 @@
         android:background="#000"></View>
 
     <LinearLayout
+        android:id="@+id/JP_MAIN"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -202,14 +203,14 @@
                 android:layout_height="wrap_content"
                 android:text="JP"
                 android:textSize="25dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <Spinner
-                android:layout_width="match_parent"
                 android:id="@+id/spinner"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:drawSelectorOnTop="true"
-                android:entries="@array/array_name"
-                android:layout_height="wrap_content">
+                android:entries="@array/array_name">
 
             </Spinner>
 
@@ -227,10 +228,11 @@
         android:background="#000"></View>
 
     <LinearLayout
+        android:id="@+id/DA_MAIN"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -242,7 +244,7 @@
                 android:layout_height="wrap_content"
                 android:text="DA"
                 android:textSize="25dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <ToggleButton
                 android:id="@+id/btnTglSec2"
@@ -259,33 +261,33 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="match_parent"
                 android:id="@+id/lotForMa2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="yes"
                     android:id="@+id/DAYes"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
 
-                    android:layout_height="50dp"/>
+                    android:text="yes" />
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="late"
                     android:id="@+id/DALate"
-
-                    android:layout_height="50dp"/>
-                <Button
                     android:layout_width="0dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:text="no"
+
+                    android:text="late" />
+
+                <Button
                     android:id="@+id/DANo"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
 
-                    android:layout_height="50dp"/>
-
+                    android:text="no" />
 
 
             </LinearLayout>
@@ -334,10 +336,11 @@
         android:background="#000"></View>
 
     <LinearLayout
+        android:id="@+id/SB_MAIN"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_margin="5dp"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -350,7 +353,7 @@
                 android:layout_height="wrap_content"
                 android:text="SB"
                 android:textSize="25dp"
-                android:textStyle="bold"/>
+                android:textStyle="bold" />
 
             <ToggleButton
                 android:id="@+id/btnTglSec1"
@@ -367,32 +370,32 @@
             android:layout_height="wrap_content">
 
             <LinearLayout
-                android:layout_width="match_parent"
                 android:id="@+id/lotForMa1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="yes"
                     android:id="@+id/SBYes"
-                    android:layout_height="50dp"/>
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:text="yes" />
 
                 <Button
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:text="late"
                     android:id="@+id/SBLate"
-
-                    android:layout_height="50dp"/>
-                <Button
                     android:layout_width="0dp"
+                    android:layout_height="50dp"
                     android:layout_weight="1"
-                    android:text="no"
+
+                    android:text="late" />
+
+                <Button
                     android:id="@+id/SBNo"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
 
-                    android:layout_height="50dp"/>
-
+                    android:text="no" />
 
 
             </LinearLayout>

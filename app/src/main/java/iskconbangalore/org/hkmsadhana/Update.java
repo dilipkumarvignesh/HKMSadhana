@@ -38,7 +38,7 @@ public class Update extends Fragment implements View.OnClickListener {
     TextView selectedDay, dd, mm, yyyy;
     String setFinalDate;
     ToggleButton sec1,sec,sec2;
-    LinearLayout l1,l2,l1a,l1b,l2a,l2b;
+    LinearLayout l1,l2,l1a,l1b,l2a,l2b,MaMain,SbMain,DaMain,JpMain;
     TextView t1;
     String MAStatus,DAStatus,SBStatus,JapaStatus;
 
@@ -93,13 +93,6 @@ public class Update extends Fragment implements View.OnClickListener {
 
     public void UIInit()
     {
-
-
-
-//        l1.setVisibility(View.VISIBLE);
-//        l1a.setVisibility(View.VISIBLE);
-//        l1b.setVisibility(View.VISIBLE);
-
 
         sec.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -185,6 +178,10 @@ public class Update extends Fragment implements View.OnClickListener {
         sec2 = (ToggleButton)view.findViewById(R.id.btnTglSec2);
         l2a = (LinearLayout)view.findViewById(R.id.lotForMa2);
         l2b = (LinearLayout)view.findViewById(R.id.lotForMaRe2);
+        MaMain = (LinearLayout)view.findViewById(R.id.MA_MAIN);
+        DaMain = (LinearLayout)view.findViewById(R.id.DA_MAIN);
+        SbMain = (LinearLayout)view.findViewById(R.id.SB_MAIN);
+        JpMain =(LinearLayout)view.findViewById(R.id.JP_MAIN);
 
         UIInit();
 //        TextView MaYes = (TextView) view.findViewById(R.id.MAYes);
@@ -326,12 +323,30 @@ public class Update extends Fragment implements View.OnClickListener {
         }
 
 
-//        SadhanaUpdate obtainedData = mydb.getData(setFinalDate);
-//        MAStatus = obtainedData.MA;
-//        DAStatus = obtainedData.DA;
-//        SBStatus = obtainedData.SB;
-//        JapaStatus = obtainedData.Japa;
+        SadhanaUpdate obtainedData = mydb.getData(setFinalDate);
+        MAStatus = obtainedData.MA;
 
+        if(!MAStatus.equals("NA"))
+
+            MaMain.setVisibility(View.GONE);
+        else
+            MaMain.setVisibility(View.VISIBLE);
+        DAStatus = obtainedData.DA;
+        if(!DAStatus.equals("NA"))
+            DaMain.setVisibility(View.GONE);
+        else
+        DaMain.setVisibility(View.VISIBLE);
+        SBStatus = obtainedData.SB;
+        if(!SBStatus.equals("NA"))
+            SbMain.setVisibility(View.GONE);
+        else
+            SbMain.setVisibility(View.VISIBLE);
+        JapaStatus = obtainedData.Japa;
+        if(!JapaStatus.equals("0"))
+            JpMain.setVisibility(View.GONE);
+        else
+            JpMain.setVisibility(View.VISIBLE);
+        Log.d("info","SelectedDayInfo:"+MAStatus+"&"+DAStatus+"&"+SBStatus+"&"+JapaStatus);
     }
 
 }
