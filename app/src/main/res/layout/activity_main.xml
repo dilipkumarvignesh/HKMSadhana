@@ -17,44 +17,6 @@
 
 
 
-
-
-        <!--<TextView-->
-            <!--android:id="@+id/update"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:background="#444444"-->
-            <!--android:text="Update Sadhana"-->
-
-            <!--/>-->
-
-
-        <!--android:textAppearance="?android:attr/textAppearanceLarge"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:layout_alignParentTop="true"-->
-
-
-        <!--<TextView-->
-            <!--android:id="@+id/lost_of_text"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_above="@+id/some_button"-->
-            <!--android:text="text view with lots of text"-->
-            <!--/>-->
-        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
-            <!--android:layout_alignParentLeft="true"-->
-            <!--android:layout_alignParentRight="true"-->
-            <!--android:layout_alignParentTop="true"-->
-
-
-        <!--<Button-->
-            <!--android:id="@+id/some_button"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-
-            <!--android:text="Some Button" />-->
-
-
     <android.support.design.widget.NavigationView
         android:id="@+id/nav_view"
         android:layout_width="wrap_content"

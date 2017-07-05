@@ -55,9 +55,6 @@
             String Sdate,Sday;
             SQLiteDatabase db = this.getWritableDatabase();
 
-
-
-
             if( Smonth == "04" || Smonth == "06" || Smonth == "09" || Smonth == "11")
             {
                 days =30;
@@ -94,8 +91,11 @@
            }
 
         }
+
+
         public Double[] getSummarydB(String year, String month)
-        {    String query ="";
+        {
+            String query ="";
             Cursor res;
             SQLiteDatabase db = this.getReadableDatabase();
             String StartDate = year+"/"+month+"/01";
@@ -114,8 +114,7 @@
                     "avg(japaNo) japa "+
                     "from sadhanaUpdate1  where StrDate between  '"+StartDate+"' and '"+EndDate+"'";
             Log.d("info","Query Data="+query);
-           // Log.d("info","Query Data="+StartDate+" , "+EndDate);
-    //        query = "select count(*) from SadhanaUpdate where StrDate between  '"+StartDate+"' and '"+EndDate+"'";
+
             res = db.rawQuery(query, null );
             res.moveToFirst();
             Integer TotalCount = res.getInt(0);
@@ -136,13 +135,11 @@
             Double SbFinalValue = ((100.0*SbYesCount)+(50*SbCountLate))/(TotalCount - SbExcuseCount);
 
 
-    //
             Double[] QueryResult = {MaFinalValue,DaFinalValue,SbFinalValue,japa, ReadTime};
-    //         Log.d("info","QueryResult="+QueryResult);
 
              return QueryResult;
-
         }
+
         public void updateSadhana(String Date,String Status, String Field)
         {
             SQLiteDatabase db = this.getWritableDatabase();
@@ -158,7 +155,6 @@
             int upd = db.update("SadhanaUpdate1", cv, "StrDate = ?", new String[] {Date});
             Log.d("info","SelectedDate:"+Date);
             Log.d("info","No Of Rows affected:"+upd);
-
 
         }
 
@@ -214,24 +210,6 @@
             return numRows;
         }
 
-        public boolean updateContact (Integer id, String date, String phone, String email, String street,String place) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            ContentValues contentValues = new ContentValues();
-            contentValues.put("date", date);
-    //        contentValues.put("phone", phone);
-    //        contentValues.put("email", email);
-    //        contentValues.put("street", street);
-    //        contentValues.put("place", place);
-            db.update("SadhanaUpdate1", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
-            return true;
-        }
-
-        public Integer deleteContact (Integer id) {
-            SQLiteDatabase db = this.getWritableDatabase();
-            return db.delete("SadhanaUpdate1",
-                    "id = ? ",
-                    new String[] { Integer.toString(id) });
-        }
 
         public ArrayList<SadhanaUpdate> getSadhanaHistory() {
             ArrayList<SadhanaUpdate> outer = new ArrayList<>();

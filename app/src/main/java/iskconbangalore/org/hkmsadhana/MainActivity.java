@@ -248,12 +248,7 @@ public class MainActivity extends AppCompatActivity
             FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.main_layout, fragment,Tag).commit();
 
-//            mDrawerList.setItemChecked(position, true);
-//            mDrawerList.setSelection(position);
-//            setTitle(mNavigationDrawerItemTitles[position]);
-//            mDrawerLayout.closeDrawer(mDrawerList);
-
-        }
+       }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -277,12 +272,7 @@ public class MainActivity extends AppCompatActivity
         }
 
     }
-//    public void syncData()
-//    {
-//        Intent intent = new Intent(MainActivity.this, SyncData.class);
-//        startActivity(intent);
-//
-//    }
+
 
     @Override
     public void onPermissionsGranted(int requestCode, List<String> list) {
