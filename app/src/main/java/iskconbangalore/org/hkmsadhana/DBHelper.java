@@ -152,6 +152,8 @@
              cv.put("DA",Status);
             else if (Field == "SB")
                 cv.put("SB",Status);
+            else if (Field == "JAPA")
+                cv.put("JapaNo",Status);
             int upd = db.update("SadhanaUpdate1", cv, "StrDate = ?", new String[] {Date});
             Log.d("info","SelectedDate:"+Date);
             Log.d("info","No Of Rows affected:"+upd);

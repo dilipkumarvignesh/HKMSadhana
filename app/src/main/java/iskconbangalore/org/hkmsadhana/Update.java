@@ -10,10 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -38,6 +40,7 @@ public class Update extends Fragment implements View.OnClickListener {
 //    private static final String ARG_PARAM2 = "param2";
     TextView selectedDay, dd, mm, yyyy;
     String setFinalDate;
+    Spinner Japa;
     ToggleButton sec1,sec,sec2;
     LinearLayout l1,l2,l1a,l1b,l2a,l2b,MaMain,SbMain,DaMain,JpMain;
     TextView t1;
@@ -205,8 +208,10 @@ public class Update extends Fragment implements View.OnClickListener {
         DaMain = (LinearLayout)view.findViewById(R.id.DA_MAIN);
         SbMain = (LinearLayout)view.findViewById(R.id.SB_MAIN);
         JpMain =(LinearLayout)view.findViewById(R.id.JP_MAIN);
+        Japa = (Spinner)view.findViewById(R.id.spinner);
 
         UIInit();
+        JapaSpinner();
 //        TextView MaYes = (TextView) view.findViewById(R.id.MAYes);
 //        MaYes.setOnClickListener(this);
 //        TextView MaYes = (TextView) view.findViewById(R.id.MAYes);
@@ -225,6 +230,31 @@ public class Update extends Fragment implements View.OnClickListener {
         yyyy = (TextView)view.findViewById(R.id.yyyy);
         getTodayDate();
         return view;
+    }
+    public void JapaSpinner()
+    {
+
+        Japa.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            private Boolean mIsSpinnerFirstCall = true;
+            public void onItemSelected(AdapterView<?> parent, View view,
+                                       int position, long id) {
+                if(!mIsSpinnerFirstCall) {
+                    String JPValue=Japa.getSelectedItem().toString();
+                    Log.d("info","JPValue:"+JPValue);
+                    mydb.updateSadhana(setFinalDate,JPValue,"JAPA");
+                    JpMain.setVisibility(View.GONE);
+                    // Your code goes gere
+                }
+                mIsSpinnerFirstCall = false;
+            }
+
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
     }
     public void showDatePickerDialog(View v) {
         DialogFragment newFragment = new DatePickerFragment();

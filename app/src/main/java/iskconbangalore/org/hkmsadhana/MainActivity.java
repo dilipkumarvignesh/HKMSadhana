@@ -25,6 +25,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.content.SharedPreferences.Editor;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -35,6 +36,7 @@ import com.google.api.services.sheets.v4.SheetsScopes;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import pub.devrel.easypermissions.AfterPermissionGranted;
@@ -131,18 +133,38 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         FragmentManager fragmentManager = getSupportFragmentManager();
-
+        mydb = new DBHelper(this);
         fragmentManager.beginTransaction().replace(R.id.main_layout, new Update(),"update").commit();
-//        try {
-//            getDate();
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
+
+        SharedPreferences FirstUse = this.getSharedPreferences("FirstUse", MODE_PRIVATE);
+        String FirstInstall = FirstUse.getString("firstUse", "");
+
+        if (FirstInstall.equals(""))
+        {
+            String sMonth="";
+            final Calendar calendar = Calendar.getInstance();
+            int yy = calendar.get(Calendar.YEAR);
+            int mm = calendar.get(Calendar.MONTH);
+
+            if(mm < 10){
+
+                sMonth = "0" +(mm+1);
+            }
+            else
+            {
+                sMonth = ""+(mm+1);
+            }
+            mydb.initializeMonthlySadhana(sMonth,yy);
+            Editor edit= FirstUse.edit();
+            edit.putString("FirstUse", "False");
+            edit.commit();
+        }
+
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
         startService(new Intent(this, RemainderService.class));
-        mydb = new DBHelper(this);
+
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
