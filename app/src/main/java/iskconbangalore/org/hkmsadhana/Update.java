@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
@@ -149,24 +150,46 @@ public class Update extends Fragment implements View.OnClickListener {
         ImageButton fab = (ImageButton)view.findViewById(R.id.datePicker);
 
         mydb = new DBHelper(getActivity());
-         TextView MaYes = (TextView) view.findViewById(R.id.MAYes);
-         MaYes.setOnClickListener(this);
-        TextView MaNo = (TextView) view.findViewById(R.id.MANo);
+
+        Button MaYes = (Button) view.findViewById(R.id.MAYes);
+        MaYes.setOnClickListener(this);
+        Button MaNo = (Button) view.findViewById(R.id.MANo);
         MaNo.setOnClickListener(this);
-        TextView MaLate = (TextView) view.findViewById(R.id.MALate);
+         Button MaLate = (Button) view.findViewById(R.id.MALate);
         MaLate.setOnClickListener(this);
-        TextView SBYes = (TextView) view.findViewById(R.id.SBYes);
-        SBYes.setOnClickListener(this);
-        TextView SBNo = (TextView) view.findViewById(R.id.SBNo);
-        SBNo.setOnClickListener(this);
-        TextView SbLate = (TextView) view.findViewById(R.id.SBLate);
-        SbLate.setOnClickListener(this);
-        TextView DaYes = (TextView) view.findViewById(R.id.DAYes);
+        Button MaSick = (Button) view.findViewById(R.id.MAsick);
+        MaSick.setOnClickListener(this);
+        Button MaAS = (Button) view.findViewById(R.id.MAas);
+        MaAS.setOnClickListener(this);
+        Button Maos = (Button) view.findViewById(R.id.MAos);
+        Maos.setOnClickListener(this);
+
+        Button DaYes = (Button) view.findViewById(R.id.DAYes);
         DaYes.setOnClickListener(this);
-        TextView DaNo = (TextView) view.findViewById(R.id.DANo);
+        Button DaNo = (Button) view.findViewById(R.id.DANo);
         DaNo.setOnClickListener(this);
-        TextView DaLate = (TextView) view.findViewById(R.id.DALate);
+        Button DaLate = (Button) view.findViewById(R.id.DALate);
         DaLate.setOnClickListener(this);
+        Button DaSick = (Button) view.findViewById(R.id.DAsick);
+        DaSick.setOnClickListener(this);
+        Button DaAS = (Button) view.findViewById(R.id.DAas);
+        DaAS.setOnClickListener(this);
+        Button Daos = (Button) view.findViewById(R.id.DAos);
+        Daos.setOnClickListener(this);
+
+        Button SBYes = (Button) view.findViewById(R.id.SBYes);
+        SBYes.setOnClickListener(this);
+        Button SBNo = (Button) view.findViewById(R.id.SBNo);
+        SBNo.setOnClickListener(this);
+        Button SBLate = (Button) view.findViewById(R.id.SBLate);
+        SBLate.setOnClickListener(this);
+        Button SBSick = (Button) view.findViewById(R.id.SBsick);
+        SBSick.setOnClickListener(this);
+        Button SBAS = (Button) view.findViewById(R.id.SBas);
+        SBAS.setOnClickListener(this);
+        Button SBos = (Button) view.findViewById(R.id.SBos);
+        SBos.setOnClickListener(this);
+
         sec = (ToggleButton)view.findViewById(R.id.btnTglSec);
         l1 = (LinearLayout)view.findViewById(R.id.lotForMa);
         l2 = (LinearLayout)view.findViewById(R.id.lotForMaRe);
@@ -241,30 +264,75 @@ public class Update extends Fragment implements View.OnClickListener {
         switch(v.getId()){
             case R.id.MAYes:
                 mydb.updateSadhana(setFinalDate,"YES","MA");
+                MaMain.setVisibility(View.GONE);
                 break;
             case R.id.MANo:
                 mydb.updateSadhana(setFinalDate,"NO","MA");
+                MaMain.setVisibility(View.GONE);
                 break;
             case R.id.MALate:
                 mydb.updateSadhana(setFinalDate,"LATE","MA");
+                MaMain.setVisibility(View.GONE);
+                break;
+            case R.id.MAsick:
+                mydb.updateSadhana(setFinalDate,"SICK","MA");
+                MaMain.setVisibility(View.GONE);
+                break;
+            case R.id.MAos:
+                mydb.updateSadhana(setFinalDate,"OS","MA");
+                MaMain.setVisibility(View.GONE);
+                break;
+            case R.id.MAas:
+                mydb.updateSadhana(setFinalDate,"AS","MA");
+                MaMain.setVisibility(View.GONE);
                 break;
             case R.id.DAYes:
                 mydb.updateSadhana(setFinalDate,"YES","DA");
+                DaMain.setVisibility(View.GONE);
                 break;
             case R.id.DANo:
                 mydb.updateSadhana(setFinalDate,"NO","DA");
+                DaMain.setVisibility(View.GONE);
                 break;
             case R.id.DALate:
                 mydb.updateSadhana(setFinalDate,"LATE","DA");
+                DaMain.setVisibility(View.GONE);
+                break;
+            case R.id.DAsick:
+                mydb.updateSadhana(setFinalDate,"SICK","DA");
+                DaMain.setVisibility(View.GONE);
+                break;
+            case R.id.DAos:
+                mydb.updateSadhana(setFinalDate,"OS","DA");
+                DaMain.setVisibility(View.GONE);
+                break;
+            case R.id.DAas:
+                mydb.updateSadhana(setFinalDate,"AS","DA");
+                DaMain.setVisibility(View.GONE);
                 break;
             case R.id.SBYes:
                 mydb.updateSadhana(setFinalDate,"YES","SB");
+                SbMain.setVisibility(View.GONE);
                 break;
             case R.id.SBNo:
                 mydb.updateSadhana(setFinalDate,"NO","SB");
+                SbMain.setVisibility(View.GONE);
                 break;
             case R.id.SBLate:
                 mydb.updateSadhana(setFinalDate,"LATE","SB");
+                SbMain.setVisibility(View.GONE);
+                break;
+            case R.id.SBsick:
+                mydb.updateSadhana(setFinalDate,"SICK","SB");
+                SbMain.setVisibility(View.GONE);
+                break;
+            case R.id.SBos:
+                mydb.updateSadhana(setFinalDate,"OS","SB");
+                SbMain.setVisibility(View.GONE);
+                break;
+            case R.id.SBas:
+                mydb.updateSadhana(setFinalDate,"AS","SB");
+                SbMain.setVisibility(View.GONE);
                 break;
         }
     }
