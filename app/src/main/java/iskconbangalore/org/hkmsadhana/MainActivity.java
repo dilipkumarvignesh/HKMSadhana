@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity
 
         if (FirstInstall.equals(""))
         {
+            Log.d("info","FirstInstall Sadhana:"+FirstInstall);
             String sMonth="";
             final Calendar calendar = Calendar.getInstance();
             int yy = calendar.get(Calendar.YEAR);
@@ -156,8 +157,15 @@ public class MainActivity extends AppCompatActivity
             }
             mydb.initializeMonthlySadhana(sMonth,yy);
             Editor edit= FirstUse.edit();
-            edit.putString("FirstUse", "False");
+            edit.putString("firstUse", "False");
+
             edit.commit();
+            FirstInstall = FirstUse.getString("firstUse", "");
+            Log.d("info","FirstInstall:"+FirstInstall);
+        }
+        else
+        {
+            Log.d("info","InitSadhanaDone");
         }
 
         mCredential = GoogleAccountCredential.usingOAuth2(
