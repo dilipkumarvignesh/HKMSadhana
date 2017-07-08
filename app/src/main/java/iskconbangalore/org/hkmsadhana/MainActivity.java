@@ -55,6 +55,7 @@ public class MainActivity extends AppCompatActivity
     private DBHelper mydb ;
     private String updateSheetId;
     int Gyear, Gmonth, Gday;
+    int operation;
 
 
     public GoogleAccountCredential mCredential;
@@ -171,21 +172,29 @@ public class MainActivity extends AppCompatActivity
         mCredential = GoogleAccountCredential.usingOAuth2(
                 getApplicationContext(), Arrays.asList(SCOPES))
                 .setBackOff(new ExponentialBackOff());
+
         startService(new Intent(this, RemainderService.class));
 
-        mCredential = GoogleAccountCredential.usingOAuth2(
-                getApplicationContext(), Arrays.asList(SCOPES))
-                .setBackOff(new ExponentialBackOff());
+
         Log.d("info","GCredentialsMain="+mCredential);
 //        insertTodaySadhana();
         SharedPreferences sheetId = this.getSharedPreferences("GoogleSheetId", MODE_PRIVATE);
         String sheetIdValue = sheetId.getString("gSheetId", "");
-        updateSheetId= sheetIdValue;
+
+
         if ( sheetIdValue == "")
         {
             Toast.makeText(getApplicationContext(), " No Google Sheet Id.",
                     Toast.LENGTH_LONG).show();
+            operation=0;
+            getResultsFromApi();
 
+        }
+        else
+        {
+            updateSheetId= sheetIdValue;
+            Toast.makeText(getApplicationContext(), " Google Sheet Id:"+updateSheetId,
+                    Toast.LENGTH_LONG).show();
         }
 
 //        Editor edit = sheetId.edit();
@@ -207,15 +216,6 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void insertTodaySadhana()
-    {
-        Toast.makeText(getApplicationContext(), " Sadhana Updated Successfully.",
-                Toast.LENGTH_LONG).show();
-        long date = System.currentTimeMillis() / 1000L;
-        Log.d("info","date="+date);
-        mydb.insertSadhana("2017/07/03",this,"YES","YES","NO",16,50);
-
-    }
     @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -312,6 +312,7 @@ public class MainActivity extends AppCompatActivity
     public void onPermissionsDenied(int requestCode, List<String> list) {
         // Do nothing.
     }
+
     @AfterPermissionGranted(REQUEST_PERMISSION_GET_ACCOUNTS)
     private void chooseAccount() {
         if (EasyPermissions.hasPermissions(
@@ -409,9 +410,19 @@ public class MainActivity extends AppCompatActivity
         } else if (! isDeviceOnline()) {
            // mOutputText.setText("No network connection available.");
         } else {
-            Integer operation = 1;
-            Log.d("info","Inside getResults");
-            new MakeRequestTask(mCredential,updateSheetId,2,this).execute();
+
+            if (operation==0) {
+                Log.d("info", "Inside getResults");
+                new MakeRequestTask(mCredential, updateSheetId, 0, this).execute();
+            }
+            else if(operation ==1)
+            {
+                new MakeRequestTask(mCredential, updateSheetId, 1, this).execute();
+            }
+            else
+            {
+                new MakeRequestTask(mCredential, updateSheetId, 2, this).execute();
+            }
         }
     }
     private boolean isDeviceOnline() {

@@ -128,11 +128,11 @@
             Integer SbCountLate = res.getInt(8);
             Integer SbExcuseCount = res.getInt(9);
 
-            Double ReadTime = (1.0*res.getInt(10))/60;
-            Double japa = res.getDouble(11);
-            Double MaFinalValue = ((100.0*MaYesCount)+(50*MaCountLate))/(TotalCount - MaExcuseCount);
-            Double DaFinalValue = ((100.0*DaYesCount)+(50*DaCountLate))/(TotalCount - DaExcuseCount);
-            Double SbFinalValue = ((100.0*SbYesCount)+(50*SbCountLate))/(TotalCount - SbExcuseCount);
+            Double ReadTime = (double)Math.round((1.0*res.getInt(10))/60);
+            Double japa = (double)Math.round(res.getDouble(11));
+            Double MaFinalValue = (double)Math.round(((100.0*MaYesCount)+(50*MaCountLate))/(TotalCount - MaExcuseCount));
+            Double DaFinalValue = (double)Math.round(((100.0*DaYesCount)+(50*DaCountLate))/(TotalCount - DaExcuseCount));
+            Double SbFinalValue = (double)Math.round(((100.0*SbYesCount)+(50*SbCountLate))/(TotalCount - SbExcuseCount));
 
 
             Double[] QueryResult = {MaFinalValue,DaFinalValue,SbFinalValue,japa, ReadTime};

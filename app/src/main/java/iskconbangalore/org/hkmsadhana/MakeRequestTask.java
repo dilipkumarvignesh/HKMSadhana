@@ -62,9 +62,12 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
         try {
                 Log.d("info","Inside Do in Background");
                 //return determine_call();
-                if (operation ==0)
+
+                if (operation ==0) {
+                    Log.d("info", "Call CreateSheet");
                     return createSheet();
-                else if(operation ==1)
+                }
+                    else if(operation ==1)
                     return getDataFromApi();
                 else if (operation ==2)
                     return updateSheet();
@@ -88,20 +91,12 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
 //    {
 //        if(operation == 0
 //    }
-    public List<String> createSheet() throws IOException{
+    private List<String> createSheet() throws IOException{
         Spreadsheet requestBody = new Spreadsheet();
 
        // Sheets sheetsService = createSheetsService();
         Spreadsheet request = this.mService.spreadsheets().create(requestBody).execute();
         Log.d("info","Request:"+request);
-
-      //  Spreadsheet response = request.execute();
-
-//        Spreadsheet requestBody = new Spreadsheet();
-//        Sheets.Spreadsheets.Create request = this.mService.spreadsheets().create(requestBody);
-//        Log.d("info","Inside CreateSheet");
-//        Spreadsheet response = request.execute();
-//        Log.d("info","GsheetRespone:"+response);
         String spreadSheetId = request.getSpreadsheetId();
         Log.d("info","SpreadSheetId="+spreadSheetId);
 
@@ -113,15 +108,18 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
     }
     private List<String> getDataFromApi() throws IOException {
         //String spreadsheetId = "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms";
-     //   String spreadsheetId = "1xk8AY8MOWiqwC3qvFEyOVN-wBdMtDW8QtirmcUkocrU";
+       String spreadsheetId = "1xk8AY8MOWiqwC3qvFEyOVN-wBdMtDW8QtirmcUkocrU";
         // String range = "Class Data!A2:E";
         String range = "A2:E";
         Log.d("info","Insie getDataFromAPi");
         Log.d("info","GID="+updateSheetId);
         List<String> results = new ArrayList<String>();
-            ValueRange response = this.mService.spreadsheets().values()
-                    .get(updateSheetId, range)
-                    .execute();
+//            ValueRange response = this.mService.spreadsheets().values()
+//                    .get(updateSheetId, range)
+//                    .execute();
+        ValueRange response = this.mService.spreadsheets().values()
+                .get(spreadsheetId, range)
+                .execute();
         Log.d("info","response="+response);
 
 
