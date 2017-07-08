@@ -166,10 +166,17 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
             List<List<Object>> data = new ArrayList<List<Object>>();
 
             SadhanaHistory = mydb.getSadhanaHistory();
+            List<Object> data2 = new ArrayList<Object>();
+            data2.add("MA");
+            data2.add("DA");
+            data2.add("SB");
+            data2.add("Japa");
+            data.add(data2);
 
             for (int i=0;i<SadhanaHistory.size();i++)
             {   Log.d("info","SadhanaUpdate:"+SadhanaHistory.get(i).MA.toString());
                 List<Object> data1 = new ArrayList<Object>();
+
                 data1.add(SadhanaHistory.get(i).MA.toString());
                 data1.add(SadhanaHistory.get(i).DA.toString());
                 data1.add(SadhanaHistory.get(i).SB.toString());
@@ -190,7 +197,7 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
             List<ValueRange> finaldata = new ArrayList<>();
             ValueRange body = new ValueRange();
             body.setValues(data);
-            String range = "A2:E32";
+            String range = "A1:D33";
             body.setRange(range);
             finaldata.add(body);
 

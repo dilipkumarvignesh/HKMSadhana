@@ -195,8 +195,7 @@ public class MainActivity extends AppCompatActivity
             updateSheetId= sheetIdValue;
             Toast.makeText(getApplicationContext(), " Google Sheet Id:"+updateSheetId,
                     Toast.LENGTH_LONG).show();
-            operation = 2;
-            getResultsFromApi();
+
         }
 
 //        Editor edit = sheetId.edit();
@@ -479,6 +478,12 @@ public class MainActivity extends AppCompatActivity
         dialog.show();
     }
 
+    public void startUpdate()
+    {
+        this.operation = 2;
+        Log.d("info","Inside StartUpdate");
+        getResultsFromApi();
+    }
 
 
 }

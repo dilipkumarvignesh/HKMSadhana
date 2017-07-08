@@ -368,7 +368,7 @@ public class Update extends Fragment implements View.OnClickListener {
                 SbMain.setVisibility(View.GONE);
                 break;
             case R.id.Sync:
-                ((MainActivity)getActivity()).getResultsFromApi();
+                ((MainActivity)getActivity()).startUpdate();
 
         }
     }

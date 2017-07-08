@@ -16,6 +16,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="History" />
         <item
+            android:id="@+id/Settings"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Settings" />
+        <item
             android:id="@+id/Remainder"
             android:icon="@drawable/ic_menu_manage"
             android:title="Remainder" />
