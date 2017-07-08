@@ -151,6 +151,7 @@ public class Update extends Fragment implements View.OnClickListener {
         // Inflate the layout for this fragment
         View view =  inflater.inflate(R.layout.fragment_update, container, false);
         ImageButton fab = (ImageButton)view.findViewById(R.id.datePicker);
+        ImageButton sync = (ImageButton)view.findViewById(R.id.Sync);
 
         mydb = new DBHelper(getActivity());
 
@@ -192,6 +193,8 @@ public class Update extends Fragment implements View.OnClickListener {
         SBAS.setOnClickListener(this);
         Button SBos = (Button) view.findViewById(R.id.SBos);
         SBos.setOnClickListener(this);
+
+        sync.setOnClickListener(this);
 
         sec = (ToggleButton)view.findViewById(R.id.btnTglSec);
         l1 = (LinearLayout)view.findViewById(R.id.lotForMa);
@@ -364,6 +367,9 @@ public class Update extends Fragment implements View.OnClickListener {
                 mydb.updateSadhana(setFinalDate,"AS","SB");
                 SbMain.setVisibility(View.GONE);
                 break;
+            case R.id.Sync:
+                ((MainActivity)getActivity()).getResultsFromApi();
+
         }
     }
 
