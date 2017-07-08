@@ -10,14 +10,17 @@ import com.google.api.client.googleapis.extensions.android.gms.auth.GoogleAccoun
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.api.services.sheets.v4.Sheets;
 import com.google.api.services.sheets.v4.SheetsScopes;
+import com.google.api.services.sheets.v4.model.BatchUpdateValuesRequest;
+import com.google.api.services.sheets.v4.model.BatchUpdateValuesResponse;
 import com.google.api.services.sheets.v4.model.Spreadsheet;
-import com.google.api.services.sheets.v4.model.UpdateValuesResponse;
 import com.google.api.services.sheets.v4.model.ValueRange;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.security.GeneralSecurityException;
 
 /**
  * Created by i308830 on 6/22/17.
@@ -136,27 +139,72 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
         return results;
     }
 
-        public List<String> updateSheet() throws IOException
-        {   String range = "A12:E12";
-            Log.d("info","Inside updateSheet");
-            List<Object> data1 = new ArrayList<Object>();
-            data1.add ("Sameer");
-            data1.add("6544");
-            data1.add ("Tentative");
-            data1.add("4123");
-            data1.add("SRID");
-            List<String> results = new ArrayList<String>();
+        public List<String> updateSheet() throws IOException, GeneralSecurityException
+        {
+//            Log.d("info","Inside updateSheet");
 
+//            data1.add ("Sameer");
+//            data1.add("6544");
+//            data1.add ("Tentative");
+//            data1.add("4123");
+//            data1.add("SRID");
+           List<String> results = new ArrayList<String>();
+//
+//
+//            List<List<Object>> data = new ArrayList<List<Object>>();
+//            data.add (data1);
+//
+//            ValueRange body = new ValueRange()
+//                    .setValues(data);
+////            UpdateValuesResponse result =
+////                    this.mService.spreadsheets().values().update(updateSheetId, range, body)
+////                            .setValueInputOption("USER_ENTERED")
+////                            .execute();
 
+            DBHelper mydb = new DBHelper(Ma);
+            ArrayList<SadhanaUpdate> SadhanaHistory= new ArrayList<SadhanaUpdate>();
             List<List<Object>> data = new ArrayList<List<Object>>();
-            data.add (data1);
 
-            ValueRange body = new ValueRange()
-                    .setValues(data);
-            UpdateValuesResponse result =
-                    this.mService.spreadsheets().values().update(updateSheetId, range, body)
-                            .setValueInputOption("USER_ENTERED")
-                            .execute();
+            SadhanaHistory = mydb.getSadhanaHistory();
+
+            for (int i=0;i<SadhanaHistory.size();i++)
+            {   Log.d("info","SadhanaUpdate:"+SadhanaHistory.get(i).MA.toString());
+                List<Object> data1 = new ArrayList<Object>();
+                data1.add(SadhanaHistory.get(i).MA.toString());
+                data1.add(SadhanaHistory.get(i).DA.toString());
+                data1.add(SadhanaHistory.get(i).SB.toString());
+                data1.add(SadhanaHistory.get(i).Japa.toString());
+                data.add(data1);
+                Log.d("info","DataRow:"+data1);
+
+            }
+
+            Log.d("info","UpdatedData:"+data);
+
+
+
+
+
+            String spreadsheetId = updateSheetId;
+            Log.d("info","SpreadSheetID:"+spreadsheetId); // TODO: Update placeholder value.
+            List<ValueRange> finaldata = new ArrayList<>();
+            ValueRange body = new ValueRange();
+            body.setValues(data);
+            String range = "A2:E32";
+            body.setRange(range);
+            finaldata.add(body);
+
+            String valueInputOption = "USER_ENTERED"; // T
+
+            BatchUpdateValuesRequest requestBody = new BatchUpdateValuesRequest();
+            requestBody.setValueInputOption(valueInputOption);
+            requestBody.setData(finaldata);
+
+            Sheets.Spreadsheets.Values.BatchUpdate request =
+                    this.mService.spreadsheets().values().batchUpdate(spreadsheetId, requestBody);
+
+            BatchUpdateValuesResponse response = request.execute();
+            Log.d("info","BatchUpdateInfo:"+response);
             return results;
         }
 

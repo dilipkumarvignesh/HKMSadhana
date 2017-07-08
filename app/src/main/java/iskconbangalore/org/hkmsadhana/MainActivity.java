@@ -423,6 +423,7 @@ public class MainActivity extends AppCompatActivity
             }
             else
             {
+                Log.d("info","UpdateSheet");
                 new MakeRequestTask(mCredential, updateSheetId, 2, this).execute();
             }
         }
