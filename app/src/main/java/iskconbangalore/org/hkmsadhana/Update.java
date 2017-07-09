@@ -259,13 +259,7 @@ public class Update extends Fragment implements View.OnClickListener {
             }
         });
     }
-    public void showDatePickerDialog(View v) {
-        DialogFragment newFragment = new DatePickerFragment();
-        newFragment.setTargetFragment(this,1);
-        FragmentTransaction transaction=getChildFragmentManager().beginTransaction();
-        newFragment.show(transaction, "datePicker");
 
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -453,4 +447,11 @@ public class Update extends Fragment implements View.OnClickListener {
         Log.d("info","SelectedDayInfo:"+MAStatus+"&"+DAStatus+"&"+SBStatus+"&"+JapaStatus);
     }
 
+    public void showDatePickerDialog(View v) {
+        DialogFragment newFragment = new DatePickerFragment();
+        newFragment.setTargetFragment(this,1);
+        FragmentTransaction transaction=getChildFragmentManager().beginTransaction();
+        newFragment.show(transaction, "datePicker");
+
+    }
 }

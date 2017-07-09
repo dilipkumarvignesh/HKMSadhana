@@ -270,7 +270,8 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.Remainder) {
             fragment = new Remainder();
-        } else if (id == R.id.nav_share) {
+        } else if (id == R.id.Settings) {
+            fragment = new Settings();
 
         } else if (id == R.id.nav_send) {
 
