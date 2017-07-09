@@ -28,6 +28,8 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
         // Create a new instance of DatePickerDialog and return it
         TimePickerDialog dialog = new TimePickerDialog(getActivity(),this,hour,minute,true);
 
+
+
         return dialog;
         // return new DatePickerDialog(getActivity(), this, year, month, day);
     }
@@ -38,6 +40,6 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
 
         // Do something with the date chosen by the user
 
-
+        ((MainActivity)getActivity()).getSelectedTime(hour,minutes);
     }
 }

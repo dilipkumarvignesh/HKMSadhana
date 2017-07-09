@@ -1,7 +1,6 @@
 package iskconbangalore.org.hkmsadhana;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
@@ -10,20 +9,24 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
+
+import java.text.ParseException;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link Settings.OnFragmentInteractionListener} interface
+
  * to handle interaction events.
  * Use the {@link Settings#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class Settings extends Fragment {
+public class Settings extends Fragment implements View.OnClickListener {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    int SetOP;
     View view;
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -67,17 +70,42 @@ public class Settings extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_settings, container, false);
-        Button setButton = (Button)view.findViewById(R.id.MASET);
+        Button MAsetButton = (Button)view.findViewById(R.id.MAButton);
+        Button DAsetButton = (Button)view.findViewById(R.id.DAButton);
+        Button SBsetButton = (Button)view.findViewById(R.id.SBButton);
 
-        setButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onButtonPressed("GET",v);
-            }
-        });
+        MAsetButton.setOnClickListener(this);
+        DAsetButton.setOnClickListener(this);
+        SBsetButton.setOnClickListener(this);
+//        setButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                showTimePickerDialog(v);
+//            }
+        //});
         return view;
     }
 
+    @Override
+    public void onClick(View v) {
+        switch(v.getId()) {
+            case R.id.MAButton:
+
+                SetOP = 1;
+                showTimePickerDialog(v);
+                break;
+            case R.id.DAButton:
+
+                SetOP = 2;
+                showTimePickerDialog(v);
+                break;
+            case R.id.SBButton:
+
+                SetOP = 3;
+                showTimePickerDialog(v);
+                break;
+        }
+    }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(String Tag,View v) {
 //        if (mListener != null) {
@@ -100,6 +128,23 @@ public class Settings extends Fragment {
     public void onDetach() {
         super.onDetach();
       //  mListener = null;
+    }
+
+    public void SetTime(int hour,int minutes) throws ParseException
+    {
+        if (SetOP ==1) {
+            TextView MATime = (TextView) view.findViewById(R.id.MATime);
+            MATime.setText(hour + ":" + minutes);
+        }
+        else if (SetOP ==2) {
+            TextView DATime = (TextView) view.findViewById(R.id.DATime);
+            DATime.setText(hour + ":" + minutes);
+        }
+        else if (SetOP ==3) {
+            TextView SBTime = (TextView) view.findViewById(R.id.SBTime);
+            SBTime.setText(hour + ":" + minutes);
+        }
+
     }
 
     /**

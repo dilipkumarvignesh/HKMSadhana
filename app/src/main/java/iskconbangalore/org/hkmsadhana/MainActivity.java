@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -25,7 +26,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.content.SharedPreferences.Editor;
 
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GoogleApiAvailability;
@@ -272,6 +272,7 @@ public class MainActivity extends AppCompatActivity
             fragment = new Remainder();
         } else if (id == R.id.Settings) {
             fragment = new Settings();
+            Tag = "settings";
 
         } else if (id == R.id.nav_send) {
 
@@ -305,7 +306,15 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-
+    public void getSelectedTime(int Hour,int minutes)
+    {
+        Settings fragment = (Settings)getSupportFragmentManager().findFragmentByTag("settings");
+        try {
+            fragment.SetTime(Hour,minutes);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
     @Override
     public void onPermissionsGranted(int requestCode, List<String> list) {
         // Do nothing.
