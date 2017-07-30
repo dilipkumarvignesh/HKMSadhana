@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.widget.TimePicker;
 
+import java.text.ParseException;
 import java.util.Calendar;
 
 /**
@@ -40,6 +41,10 @@ public class TimePickerFragment extends DialogFragment implements TimePickerDial
 
         // Do something with the date chosen by the user
 
-        ((MainActivity)getActivity()).getSelectedTime(hour,minutes);
+        try {
+            ((MainActivity)getActivity()).getSelectedTime(hour,minutes);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
     }
 }

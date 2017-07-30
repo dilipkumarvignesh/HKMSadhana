@@ -211,6 +211,7 @@ public class MakeRequestTask extends AsyncTask<Void, Void, List<String>> {
                     this.mService.spreadsheets().values().batchUpdate(spreadsheetId, requestBody);
 
             BatchUpdateValuesResponse response = request.execute();
+
             Log.d("info","BatchUpdateInfo:"+response);
             return results;
         }

@@ -306,14 +306,14 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    public void getSelectedTime(int Hour,int minutes)
+    public void getSelectedTime(int Hour,int minutes) throws ParseException
     {
         Settings fragment = (Settings)getSupportFragmentManager().findFragmentByTag("settings");
-        try {
+        //try {
             fragment.SetTime(Hour,minutes);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
     }
     @Override
     public void onPermissionsGranted(int requestCode, List<String> list) {
@@ -491,6 +491,12 @@ public class MainActivity extends AppCompatActivity
     public void startUpdate()
     {
         this.operation = 2;
+        if (updateSheetId.equals(""))
+        {
+            SharedPreferences sheetId = this.getSharedPreferences("GoogleSheetId", MODE_PRIVATE);
+            String sheetIdValue = sheetId.getString("gSheetId", "");
+            updateSheetId = sheetIdValue;
+        }
         Log.d("info","Inside StartUpdate");
         getResultsFromApi();
     }

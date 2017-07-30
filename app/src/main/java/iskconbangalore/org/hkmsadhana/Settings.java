@@ -1,17 +1,25 @@
 package iskconbangalore.org.hkmsadhana;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.text.ParseException;
+import java.util.Calendar;
+
+import static android.content.Context.ALARM_SERVICE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -73,7 +81,8 @@ public class Settings extends Fragment implements View.OnClickListener {
         Button MAsetButton = (Button)view.findViewById(R.id.MAButton);
         Button DAsetButton = (Button)view.findViewById(R.id.DAButton);
         Button SBsetButton = (Button)view.findViewById(R.id.SBButton);
-
+        Button SaveButton = (Button)view.findViewById(R.id.save_button);
+        SaveButton.setOnClickListener(this);
         MAsetButton.setOnClickListener(this);
         DAsetButton.setOnClickListener(this);
         SBsetButton.setOnClickListener(this);
@@ -104,7 +113,64 @@ public class Settings extends Fragment implements View.OnClickListener {
                 SetOP = 3;
                 showTimePickerDialog(v);
                 break;
+            case R.id.save_button:
+                saveSettings();
+                break;
         }
+    }
+
+    public void saveSettings()
+    {
+
+        TextView MATime = (TextView)view.findViewById(R.id.MATime);
+        String MA = MATime.getText().toString();
+        Log.d("info","MA Time:"+MA);
+        TextView DATime = (TextView)view.findViewById(R.id.DATime);
+        String DA = MATime.getText().toString();
+
+        String[] time1 = MA.split(":");
+        String[] time2 = DA.split(":");
+
+        SharedPreferences timings = getActivity().getSharedPreferences("Timings", getActivity().MODE_PRIVATE);
+        Editor edit= timings.edit();
+        edit.putString("MATime", MA);
+//        edit.putString("SBTime", );
+//        edit.putString("DATime", );
+        edit.commit();
+
+        Calendar calendar = Calendar.getInstance();
+        Log.d("info","CurrentTime:"+calendar.getTime());
+        calendar.set(Calendar.HOUR_OF_DAY,Integer.parseInt(time1[0]));
+        calendar.set(Calendar.MINUTE,Integer.parseInt(time1[1]));
+        Intent intent = new Intent(getActivity().getApplicationContext(),NotificationReceiver.class);
+        intent.setAction("FIRST");
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(getActivity().getApplicationContext(),1000,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        // AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(ALARM_SERVICE);
+
+        Calendar calendar1 = Calendar.getInstance();
+        Log.d("info","CurrentTime:"+calendar.getTime());
+
+        calendar.set(Calendar.HOUR_OF_DAY,Integer.parseInt(time2[0]));
+        calendar.set(Calendar.MINUTE,Integer.parseInt(time2[1]));
+        Log.d("Info","CalendarTime:"+calendar.getTimeInMillis());
+        Log.d("Info","SyncedTime:"+System.currentTimeMillis());
+        Intent intent1 = new Intent(getActivity().getApplicationContext(),NotificationReceiver.class);
+        intent1.setAction("SECOND");
+        PendingIntent pendingIntent1 = PendingIntent.getBroadcast(getActivity().getApplicationContext(),2000,intent1,PendingIntent.FLAG_UPDATE_CURRENT);
+//
+//        Calendar calendar2 = Calendar.getInstance();
+//        Log.d("info","CurrentTime:"+calendar.getTime());
+//        calendar.set(Calendar.HOUR_OF_DAY,18);
+//        calendar.set(Calendar.MINUTE,06);
+//        Intent intent2 = new Intent(getActivity().getApplicationContext(),NotificationReceiver.class);
+//        PendingIntent pendingIntent2 = PendingIntent.getBroadcast(getActivity().getApplicationContext(),2,intent2,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager = (AlarmManager)getActivity().getSystemService(ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alarmManager.INTERVAL_FIFTEEN_MINUTES,pendingIntent);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar1.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent1);
+//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar2.getTimeInMillis(),alarmManager.INTERVAL_DAY,pendingIntent1);
+
     }
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(String Tag,View v) {
@@ -130,7 +196,7 @@ public class Settings extends Fragment implements View.OnClickListener {
       //  mListener = null;
     }
 
-    public void SetTime(int hour,int minutes) throws ParseException
+    public void SetTime(int hour,int minutes)
     {
         if (SetOP ==1) {
             TextView MATime = (TextView) view.findViewById(R.id.MATime);

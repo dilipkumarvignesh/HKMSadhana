@@ -17,6 +17,7 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import java.text.ParseException;
@@ -363,6 +364,8 @@ public class Update extends Fragment implements View.OnClickListener {
                 break;
             case R.id.Sync:
                 ((MainActivity)getActivity()).startUpdate();
+                Toast.makeText(getActivity(), "Sadhana Updated in Google Sheet .",Toast.LENGTH_LONG).show();
+
 
         }
     }
